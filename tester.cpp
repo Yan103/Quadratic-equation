@@ -8,7 +8,9 @@
 
 const int N_TESTS = 25; // Number of tests
 
-int main() {
+void tester_solver();
+
+void tester_solver() {
     const char *filename = "tests.txt";
     tests test_arr[N_TESTS] = {};
 
@@ -17,6 +19,4 @@ int main() {
     int count = testfile_check(test_arr);
 
     printf("END OF TEST! Successfully %d/%d\n", count, N_TESTS);
-
-    return 0;
 }

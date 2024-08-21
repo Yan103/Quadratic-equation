@@ -4,8 +4,6 @@
 #include "struct_equation.h"
 
 //-----------------------------------------------------
-//! @param [in] argc - argc (from console)
-//! @param [in] argv - argv (from console)
 //! @param [out] e_ptr - equation pointer
 //!
 //! @note The function starts the process of entering the coefficients of the equation, if additional parameters
@@ -13,7 +11,7 @@
 //!       --ENDLESS -> infinite number of input attempts (enter "quit" to end the program)
 //!       --ATTEMPTS {int number (obligatory parametr)} ->  limited number of attempts, if they are all over - the end of the program (if 0 is passed, the program will not start)
 //!       if you do not specify parameters, then --ENDLESS will be used by default
-void input_equation(int argc, char *argv[], equation *e_ptr);
+void input_equation(equation *e_ptr);
 
 
 //-----------------------------------------------------

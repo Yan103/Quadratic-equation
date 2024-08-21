@@ -3,6 +3,8 @@
 
 #include <stdio.h>
 
+#include "struct_equation.h"
+
 //-----------------------------------------------------
 //! @param [out] e_ptr - equation pointer
 //!

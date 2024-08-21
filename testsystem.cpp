@@ -1,9 +1,9 @@
-#include <stdio.h>
 #include <math.h>
+#include <stdio.h>
 
 #include "nRoots.h"
-#include "struct_equation.h"
 #include "solver.h"
+#include "struct_equation.h"
 
 const double EPS = 1e-4;
 #define IS_EQUAL(x, y) (fabs(x - y) < EPS)

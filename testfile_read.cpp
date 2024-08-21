@@ -1,5 +1,6 @@
 #include <stdio.h>
 
+#include "color_printf.h"
 #include "nRoots.h"
 #include "structer_tests.h"
 
@@ -15,7 +16,7 @@ int testfile_read(const char *filename, tests *test_ptr) {
     FILE *testfile = fopen(filename, "r");
 
     if (!testfile) {
-        printf("Error occured while opening file\n");
+        printfRed("Error occured while opening file\n");
         return 1;
     }
 

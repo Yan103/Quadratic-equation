@@ -2,6 +2,7 @@
 
 #include "color_printf.h"
 #include "nRoots.h"
+#include "return_codes.h"
 #include "structer_tests.h"
 
 const int N_TESTS = 25; // Number of tests
@@ -17,7 +18,7 @@ int testfile_read(const char *filename, tests *test_ptr) {
 
     if (!testfile) {
         printfRed("Error occured while opening file\n");
-        return 1;
+        return FILE_ERROR;
     }
 
     int i = 0;
@@ -26,5 +27,5 @@ int testfile_read(const char *filename, tests *test_ptr) {
     }
     fclose(testfile);
 
-    return 0;
+    return SUCCESS;
 }

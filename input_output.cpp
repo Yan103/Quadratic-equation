@@ -6,20 +6,25 @@
 
 #include "color_printf.h"
 #include "nRoots.h"
+#include "return_codes.h"
 #include "struct_equation.h"
 
-int input_equation(equation *e_ptr);
+int input_equation(equation *e_ptr, int attempts);
 int output_result(const equation *q_equation);
 
 // Input coefficients
-int input_equation(equation *e_ptr) {
+int input_equation(equation *e_ptr, int attempts) {
    assert(e_ptr);
-
+   int input_count = 0;
    double a = 0, b = 0, c = 0;
    char message[10] = {};
 
    while (1) {
-      printf("Enter coefficents a, b and c (enter quit to exit): ");
+      if (attempts != 0) {
+         printf("Enter coefficents a, b and c (%d attempts remained, enter quit to exit): ", attempts - input_count++);
+      } else {
+         printf("Enter coefficents a, b and c (enter quit to exit): ");
+      }
       if (scanf("%lf %lf %lf", &a, &b, &c) == 3) {
          bool valid_str = true;
          for (int s = getchar(); s != '\n' && s != EOF; s = getchar()) {
@@ -27,7 +32,7 @@ int input_equation(equation *e_ptr) {
                valid_str = false;
             }
          }
-         if (valid_str) {
+         if (valid_str && isfinite(a) && isfinite(b) && isfinite(c)) {
             break;
          } else {
             printfRed("Incorrect input, enter numbers!\n");
@@ -36,24 +41,25 @@ int input_equation(equation *e_ptr) {
          if (scanf("%s", message) == 1) {
             if (strcmp("quit", message) == 0) {
                printf("You wanted to leave)\n");
-               return 1;
+               exit(SUCCESS);
             }
+
+         if (attempts == input_count && attempts != 0) {
+            printf("Input attempts have ended\n");
+            exit(SUCCESS);
+         }
          for (int s = getchar(); s != '\n' && s != EOF; s = getchar()) {};
          printfRed("Incorrect input, enter numbers or 'quit'!\n");
          }
       }
    }
 
-   assert(isfinite(a));
-   assert(isfinite(b));
-   assert(isfinite(c));
-
    e_ptr->a = a;
    e_ptr->b = b;
    e_ptr->c = c;
    e_ptr->D = b * b - 4 * a * c;
    e_ptr->x1 = e_ptr->x2 = e_ptr->nRoots = UNKNOWN;
-   return 0;
+   return SUCCESS;
 }
 
 int output_result(const equation *q_equation) {
@@ -66,23 +72,21 @@ int output_result(const equation *q_equation) {
    switch (q_equation->nRoots) {
       case NO_ROOTS:
          printf("The equation has no real roots\n");
-         return 0;
+         return SUCCESS;
       case ONE_ROOT:
          printf("The equation has 1 root: %g\n", q_equation->x1);
-         return 0;
+         return SUCCESS;
       case TWO_ROOTS:
          printf("The equation has 2 root: %g and %g\n", q_equation->x1, q_equation->x2);
-         return 0;
+         return SUCCESS;
       case INF_ROOTS:
          printf("The equation has an infinite number of solutions\n");
-         return 0;
+         return SUCCESS;
       case UNKNOWN:
          printf("Something went wrong...\n");
-         return 0;
+         return SUCCESS;
       default:
          printfRed("Something went wrong...\n");
-         return -1;
+         return PROGRAMM_ERROR;
     }
 }
-
-

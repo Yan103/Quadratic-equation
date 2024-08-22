@@ -19,9 +19,10 @@ int TestSystem(int test_number, double a, double b, double c, nRoots exp_nRoots,
         count++;
     } else {
         if (exp_nRoots != quadratic_equation.nRoots || !IS_EQUAL(exp_x1, quadratic_equation.x1) || !IS_EQUAL(exp_x2, quadratic_equation.x2)) {
-            printf("Error: Test %d (Get: x1=%lf x2=%lf nRoot=%d, expected: x1=%lf x2=%lf nRoot=%d)\n", test_number,
-            quadratic_equation.x1, quadratic_equation.x2, quadratic_equation.nRoots,
-            exp_x1, exp_x2, exp_nRoots);
+            printf("Error: Test %d (Get: x1=%lg x2=%lg nRoot=%d, \
+                    expected: x1=%lg x2=%lg nRoot=%d)\n", test_number, \
+                    quadratic_equation.x1, quadratic_equation.x2, quadratic_equation.nRoots, \
+                    exp_x1, exp_x2, exp_nRoots);
         } else {
             count++;
         }

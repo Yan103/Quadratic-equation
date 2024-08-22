@@ -1,3 +1,6 @@
+#ifndef TERMINAL_CALLS_H
+#define TERMINAL_CALLS_H
+
 #include <stdio.h>
 #include <unistd.h>
 
@@ -7,11 +10,7 @@
 #include "solver.h"
 #include "struct_equation.h"
 #include "tester_solver.h"
-#include "terminal_calls.h"
 
+int start_programm(int argc, char *argv[]);
 
-int main(int argc, char *argv[]) {
-    start_programm(argc, argv);
-
-    return SUCCESS;
-}
+#endif // TERMINAL_CALLS_H

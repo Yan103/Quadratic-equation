@@ -1,17 +1,4 @@
-#include <assert.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <unistd.h>
-
-#include "color_printf.h"
-#include "input_output.h"
-#include "my_assert.h"
-#include "return_codes.h"
-#include "solver.h"
-#include "struct_equation.h"
-#include "tester_solver.h"
-
-int start_programm(const int argc, char *argv[]);
+#include "terminal_calls.h"
 
 int start_programm(const int argc, char *argv[]) {
     ASSERT(argv != nullptr, "Null pointer was passed");

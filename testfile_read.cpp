@@ -1,12 +1,8 @@
-#include <stdio.h>
+#include "testfile_read.h"
 
 #include "color_printf.h"
 #include "my_assert.h"
-#include "nRoots.h"
 #include "return_codes.h"
-#include "structer_tests.h"
-
-int testfile_read(const char *filename, tests *test_ptr);
 
 int testfile_read(const char *filename, tests *test_ptr) {
     ASSERT(test_ptr != nullptr, "Null pointer was passed");

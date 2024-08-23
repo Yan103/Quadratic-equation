@@ -2,10 +2,12 @@
 #define TERMINAL_CALLS_H
 
 #include <stdio.h>
+#include <stdlib.h>
 #include <unistd.h>
 
 #include "color_printf.h"
 #include "input_output.h"
+#include "my_assert.h"
 #include "return_codes.h"
 #include "solver.h"
 #include "struct_equation.h"

@@ -1,4 +1,5 @@
-#include <assert.h>
+#include "solver.h"
+
 #include <math.h>
 #include <stdio.h>
 
@@ -7,11 +8,6 @@
 #include "struct_equation.h"
 
 const double EPS = 1e-8;
-
-bool IS_ZERO(double x);
-void solve_equation(equation *q_equation);
-static void swap(double *first, double *second);
-
 const int PLUG = -1;
 
 bool IS_ZERO(double x) {

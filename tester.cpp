@@ -1,16 +1,11 @@
-#include <assert.h>
+#include "tester_solver.h"
+
 #include <stdio.h>
 
 #include "color_printf.h"
 #include "my_assert.h"
-#include "structer_tests.h"
-#include "testfile_check.h"
-#include "testfile_read.h"
-#include "testsystem.h"
 
 static const char *filename = "tests.txt";
-
-void tester_solver();
 
 void tester_solver() {
 

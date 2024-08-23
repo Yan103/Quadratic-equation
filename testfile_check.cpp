@@ -1,12 +1,6 @@
-#include <stdio.h>
+#include "testfile_check.h"
 
-#include "nRoots.h"
 #include "my_assert.h"
-#include "structer_tests.h"
-#include "testsystem.h"
-
-//
-int testfile_check(tests *test_ptr);
 
 int testfile_check(tests *test_ptr) {
     ASSERT(test_ptr != nullptr, "Null pointer was passed");

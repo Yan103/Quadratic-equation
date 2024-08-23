@@ -26,7 +26,7 @@ run: $(EXECUTABLE)
 	@ ./$(EXECUTABLE)
 
 clean_build:
-	rm $(BIN_DIR)
+	@del $(BIN_DIR)
 
 clean_obj:
 	@del $(OBJ_DIR)

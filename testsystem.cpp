@@ -1,20 +1,15 @@
+#include "testsystem.h"
+
 #include <math.h>
 #include <stdio.h>
 
 #include "my_assert.h"
-#include "nRoots.h"
-#include "solver.h"
-#include "struct_equation.h"
 
 static const double EPS = 1e-4;
-
-bool IS_EQUAL(double x, double y);
 
 bool IS_EQUAL(double x, double y) {
     return fabs(x - y) < EPS;
 }
-
-int TestSystem(int test_number, double a, double b, double c, nRoots exp_nRoots, double exp_x1, double exp_x2);
 
 int TestSystem(int test_number, double a, double b, double c, nRoots exp_nRoots, double exp_x1, double exp_x2) {
     int count = 0;

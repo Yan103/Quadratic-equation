@@ -1,3 +1,5 @@
+#include "input_output.h"
+
 #include <assert.h>
 #include <ctype.h>
 #include <math.h>
@@ -8,11 +10,6 @@
 #include "my_assert.h"
 #include "nRoots.h"
 #include "return_codes.h"
-#include "struct_equation.h"
-
-int input_equation(equation *e_ptr, int attempts);
-int output_result(const equation *q_equation);
-static int validStr_check(double *coeff_a, double *coeff_b, double *coeff_c);
 
 static int validStr_check(double *coeff_a, double *coeff_b, double *coeff_c) {
    bool valid_str = true;

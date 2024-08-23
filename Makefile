@@ -9,9 +9,9 @@ SRC_DIR = src
 INC_DIR = include
 OBJ_DIR = obj
 BIN_DIR = build
-SOURCES := $(wildcard $(SRC_DIR)/*.cpp)
-INCLUDES := $(wildcard $(INC_DIR)/*.h)
-OBJECTS := $(SOURCES:$(SRC_DIR)/%.cpp=$(OBJ_DIR)/%.o)
+SOURCES = $(wildcard $(SRC_DIR)/*.cpp)
+INCLUDES = $(wildcard $(INC_DIR)/*.h)
+OBJECTS = $(SOURCES:$(SRC_DIR)/%.cpp=$(OBJ_DIR)/%.o)
 EXECUTABLE = $(BIN_DIR)/a
 
 all: $(EXECUTABLE)

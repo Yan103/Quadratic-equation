@@ -12,6 +12,23 @@
 
 int input_equation(equation *e_ptr, int attempts);
 int output_result(const equation *q_equation);
+static int validStr_check(double *coeff_a, double *coeff_b, double *coeff_c);
+
+static int validStr_check(double *coeff_a, double *coeff_b, double *coeff_c) {
+   bool valid_str = true;
+   for (int s = getchar(); s != '\n' && s != EOF; s = getchar()) {
+      if (!isspace(s)) {
+         valid_str = false;
+      }
+   }
+
+   if (valid_str && isfinite(*coeff_a) && isfinite(*coeff_b) && isfinite(*coeff_c)) {
+      return SUCCESS;
+   } else {
+      printfRed("Incorrect input, enter real numbers!\n");
+      return INPUT_ERROR;
+   }
+}
 
 // Input coefficients
 int input_equation(equation *e_ptr, int attempts) {
@@ -30,24 +47,17 @@ int input_equation(equation *e_ptr, int attempts) {
       }
 
       if (scanf("%lf %lf %lf", &coeff_a, &coeff_b, &coeff_c) == 3) {
-         bool valid_str = true;
-         for (int s = getchar(); s != '\n' && s != EOF; s = getchar()) {
-            if (!isspace(s)) {
-               valid_str = false;
-            }
-         }
 
-         if (valid_str && isfinite(coeff_a) && isfinite(coeff_b) && isfinite(coeff_c)) {
+         int next = validStr_check(&coeff_a, &coeff_b, &coeff_c);
+         if (next == SUCCESS) {
             break;
-         } else {
-            printfRed("Incorrect input, enter real numbers!\n");
          }
 
       } else {
          if (scanf("%s", message) == 1) {
             if (strcmp("quit", message) == 0) {
                printf("You wanted to leave :(\n");
-               exit(SUCCESS);
+               return USER_OUT;
             }
 
          for (int s = getchar(); s != '\n' && s != EOF; s = getchar()) {};
@@ -56,8 +66,8 @@ int input_equation(equation *e_ptr, int attempts) {
       }
       if (attempts == input_count && attempts != 0) {
             printf("Input attempts have ended...\n");
-            exit(SUCCESS);
-         }
+            return USER_OUT;
+      }
    }
    ASSERT(isfinite(e_ptr->a), "An indeterminate number (INF or NAN) was received");
    ASSERT(isfinite(e_ptr->b), "An indeterminate number (INF or NAN) was received");

@@ -10,11 +10,18 @@ const double EPS = 1e-8;
 
 bool IS_ZERO(double x);
 void solve_equation(equation *q_equation);
+static void swap(double *first, double *second);
 
 const int PLUG = -1;
 
 bool IS_ZERO(double x) {
    return fabs(x) < EPS;
+}
+
+static void swap(double *first, double *second) {
+   double tmp = *first;
+   *first = *second;
+   *second = tmp;
 }
 
 // Any number is a solution of equation
@@ -68,9 +75,7 @@ static void solve_quadratic_equation(equation *q_equation) {
       q_equation->x1 = (-q_equation->b - sqrt_D) / (2 * q_equation->a);
       q_equation->x2 = (-q_equation->b + sqrt_D) / (2 * q_equation->a);
       if (q_equation->x1 > q_equation->x2) {
-         double temp = q_equation->x1;
-         q_equation->x1 = q_equation->x2;
-         q_equation->x2 = temp;
+         swap(&q_equation->x1, &q_equation->x2);
       }
    } else {
       q_equation->nRoots = ONE_ROOT;

@@ -24,33 +24,6 @@ static void swap(double *first, double *second) {
    *second = tmp;
 }
 
-// Solving the equation (get information about the number of roots and the roots themselves)
-void solve_equation(equation *q_equation) {
-   ASSERT(q_equation != nullptr, "Null pointer was passed");
-   ASSERT(isfinite(q_equation->a), "An indeterminate number (INF or NAN) was received");
-   ASSERT(isfinite(q_equation->b), "An indeterminate number (INF or NAN) was received");
-   ASSERT(isfinite(q_equation->c), "An indeterminate number (INF or NAN) was received");
-   ASSERT(q_equation->nRoots == UNKNOWN, "Internal function execution error");
-
-   if (IS_ZERO(q_equation->a)) {
-      if (IS_ZERO(q_equation->b)) {
-         if (IS_ZERO(q_equation->c)) {
-               has_inf_roots(q_equation);
-            } else {
-               doesnt_have_real_roots(q_equation);
-            }
-        } else {
-           solve_linear_equation(q_equation);
-        }
-   } else {
-        if (q_equation->D < 0) {
-            doesnt_have_real_roots(q_equation);
-        } else {
-            solve_quadratic_equation(q_equation);
-        }
-   }
-}
-
 // Any number is a solution of equation
 static void has_inf_roots(equation *q_equation) {
    ASSERT(q_equation != nullptr, "Null pointer was passed");
@@ -108,5 +81,32 @@ static void solve_quadratic_equation(equation *q_equation) {
       q_equation->nRoots = ONE_ROOT;
       q_equation->x1 = (IS_ZERO(q_equation->b)) ? 0 : -q_equation->b / (2 * q_equation->a);
       q_equation->x2 = PLUG;
+   }
+}
+
+// Solving the equation (get information about the number of roots and the roots themselves)
+void solve_equation(equation *q_equation) {
+   ASSERT(q_equation != nullptr, "Null pointer was passed");
+   ASSERT(isfinite(q_equation->a), "An indeterminate number (INF or NAN) was received");
+   ASSERT(isfinite(q_equation->b), "An indeterminate number (INF or NAN) was received");
+   ASSERT(isfinite(q_equation->c), "An indeterminate number (INF or NAN) was received");
+   ASSERT(q_equation->nRoots == UNKNOWN, "Internal function execution error");
+
+   if (IS_ZERO(q_equation->a)) {
+      if (IS_ZERO(q_equation->b)) {
+         if (IS_ZERO(q_equation->c)) {
+               has_inf_roots(q_equation);
+            } else {
+               doesnt_have_real_roots(q_equation);
+            }
+        } else {
+           solve_linear_equation(q_equation);
+        }
+   } else {
+        if (q_equation->D < 0) {
+            doesnt_have_real_roots(q_equation);
+        } else {
+            solve_quadratic_equation(q_equation);
+        }
    }
 }

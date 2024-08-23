@@ -1,3 +1,4 @@
+#include <cstdlib>
 #include <stdio.h>
 
 #include "color_printf.h"

@@ -4,10 +4,10 @@
 A unique program that can solve quadratic (and not only) equations. The program was written in the C programming language during the summer school under the guidance of the best mentor - Yaroslav 😎
 The program requests 3 numbers - the coefficients of the equation and outputs the result to the console. It is also possible to pass arguments through the command console:
 ```bash
--h calls the help commands
+-h calls the helр commands
 -t starts the automatic testing mode (by reading data from a file)
--s starts the input coefficients mode for solving equation (enabled by default)
--a {number} limited input mode for {number} attempts
+-s starts the input coefficients mode fоr solving equation (enabled by default)
+-a {number} limited input mode fоr {number} attempts
 ```
 
 ## Installation and assembly

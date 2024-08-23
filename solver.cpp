@@ -2,23 +2,28 @@
 #include <math.h>
 #include <stdio.h>
 
+#include "my_assert.h"
 #include "nRoots.h"
 #include "struct_equation.h"
 
 const double EPS = 1e-8;
-#define IS_ZERO(x) (fabs(x) < EPS)
 
+bool IS_ZERO(double x);
 void solve_equation(equation *q_equation);
 
 const int PLUG = -1;
 
+bool IS_ZERO(double x) {
+   return fabs(x) < EPS;
+}
+
 // Any number is a solution of equation
 static void has_inf_roots(equation *q_equation) {
-   assert(q_equation);
-   assert(isfinite(q_equation->a));
-   assert(isfinite(q_equation->b));
-   assert(isfinite(q_equation->c));
-   assert(q_equation->nRoots == UNKNOWN);
+   my_assert(q_equation != nullptr , "Null pointer was passed\n");
+   my_assert(isfinite(q_equation->a) , "An indeterminate number (INF or NAN) was received\n");
+   my_assert(isfinite(q_equation->b) , "An indeterminate number (INF or NAN) was received\n");
+   my_assert(isfinite(q_equation->c) , "An indeterminate number (INF or NAN) was received\n");
+   my_assert(q_equation->nRoots == UNKNOWN, "Internal function execution error\n");
 
    q_equation->nRoots = INF_ROOTS;
    q_equation->x1 = q_equation->x2 = PLUG;
@@ -26,11 +31,11 @@ static void has_inf_roots(equation *q_equation) {
 
 // Equation has no real roots
 static void doesnt_have_real_roots(equation *q_equation) {
-   assert(q_equation);
-   assert(isfinite(q_equation->a));
-   assert(isfinite(q_equation->b));
-   assert(isfinite(q_equation->c));
-   assert(q_equation->nRoots == UNKNOWN);
+   my_assert(q_equation != nullptr , "Null pointer was passed\n");
+   my_assert(isfinite(q_equation->a) , "An indeterminate number (INF or NAN) was received\n");
+   my_assert(isfinite(q_equation->b) , "An indeterminate number (INF or NAN) was received\n");
+   my_assert(isfinite(q_equation->c) , "An indeterminate number (INF or NAN) was received\n");
+   my_assert(q_equation->nRoots == UNKNOWN, "Internal function execution error\n");
 
    q_equation->nRoots = NO_ROOTS;
    q_equation->x1 = q_equation->x2 = PLUG;
@@ -38,11 +43,11 @@ static void doesnt_have_real_roots(equation *q_equation) {
 
 // Equation becomes linear
 static void solve_linear_equation(equation *q_equation) {
-   assert(q_equation);
-   assert(isfinite(q_equation->a));
-   assert(isfinite(q_equation->b));
-   assert(isfinite(q_equation->c));
-   assert(q_equation->nRoots == UNKNOWN);
+   my_assert(q_equation != nullptr , "Null pointer was passed\n");
+   my_assert(isfinite(q_equation->a) , "An indeterminate number (INF or NAN) was received\n");
+   my_assert(isfinite(q_equation->b) , "An indeterminate number (INF or NAN) was received\n");
+   my_assert(isfinite(q_equation->c) , "An indeterminate number (INF or NAN) was received\n");
+   my_assert(q_equation->nRoots == UNKNOWN, "Internal function execution error\n");
 
    q_equation->nRoots = ONE_ROOT;
    q_equation->x1 = (IS_ZERO(q_equation->c)) ? 0 : -q_equation->c / q_equation->b;
@@ -51,11 +56,11 @@ static void solve_linear_equation(equation *q_equation) {
 
 // Solving quadratic equation
 static void solve_quadratic_equation(equation *q_equation) {
-   assert(q_equation);
-   assert(isfinite(q_equation->a));
-   assert(isfinite(q_equation->b));
-   assert(isfinite(q_equation->c));
-   assert(q_equation->nRoots == UNKNOWN);
+   my_assert(q_equation != nullptr , "Null pointer was passed\n");
+   my_assert(isfinite(q_equation->a) , "An indeterminate number (INF or NAN) was received\n");
+   my_assert(isfinite(q_equation->b) , "An indeterminate number (INF or NAN) was received\n");
+   my_assert(isfinite(q_equation->c) , "An indeterminate number (INF or NAN) was received\n");
+   my_assert(q_equation->nRoots == UNKNOWN, "Internal function execution error\n");
 
    if (!IS_ZERO(q_equation->D)) {
       q_equation->nRoots = TWO_ROOTS;
@@ -76,11 +81,11 @@ static void solve_quadratic_equation(equation *q_equation) {
 
 // Solving the equation (get information about the number of roots and the roots themselves)
 void solve_equation(equation *q_equation) {
-   assert(q_equation);
-   assert(isfinite(q_equation->a));
-   assert(isfinite(q_equation->b));
-   assert(isfinite(q_equation->c));
-   assert(q_equation->nRoots == UNKNOWN);
+   my_assert(q_equation != nullptr , "Null pointer was passed\n");
+   my_assert(isfinite(q_equation->a) , "An indeterminate number (INF or NAN) was received\n");
+   my_assert(isfinite(q_equation->b) , "An indeterminate number (INF or NAN) was received\n");
+   my_assert(isfinite(q_equation->c) , "An indeterminate number (INF or NAN) was received\n");
+   my_assert(q_equation->nRoots == UNKNOWN, "Internal function execution error\n");
 
    if (IS_ZERO(q_equation->a)) {
       if (IS_ZERO(q_equation->b)) {

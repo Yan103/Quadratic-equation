@@ -31,6 +31,6 @@ clean_build:
 clean_obj:
 	@del $(OBJ_DIR)
 
-clean_all:
-
-$
+clean:
+	@del $(BIN_DIR)
+	@del $(OBJ_DIR)

@@ -5,6 +5,7 @@
 #include <string.h>
 
 #include "color_printf.h"
+#include "my_assert.h"
 #include "nRoots.h"
 #include "return_codes.h"
 #include "struct_equation.h"
@@ -14,7 +15,9 @@ int output_result(const equation *q_equation);
 
 // Input coefficients
 int input_equation(equation *e_ptr, int attempts) {
-   assert(e_ptr);
+   my_assert(e_ptr != nullptr, "Null pointer was passed\n");
+   my_assert(isfinite(attempts), "An indeterminate number (INF or NAN) was received\n");
+
    int input_count = 0;
    double a = 0, b = 0, c = 0;
    char message[10] = {};
@@ -56,6 +59,9 @@ int input_equation(equation *e_ptr, int attempts) {
             exit(SUCCESS);
          }
    }
+   my_assert(isfinite(e_ptr->a) , "An indeterminate number (INF or NAN) was received\n");
+   my_assert(isfinite(e_ptr->b) , "An indeterminate number (INF or NAN) was received\n");
+   my_assert(isfinite(e_ptr->c) , "An indeterminate number (INF or NAN) was received\n");
 
    e_ptr->a = a;
    e_ptr->b = b;
@@ -66,11 +72,11 @@ int input_equation(equation *e_ptr, int attempts) {
 }
 
 int output_result(const equation *q_equation) {
-   assert(q_equation);
-   assert(isfinite(q_equation->a));
-   assert(isfinite(q_equation->b));
-   assert(isfinite(q_equation->c));
-   assert(q_equation->nRoots != UNKNOWN);
+   my_assert(q_equation != nullptr , "Null pointer was passed\n");
+   my_assert(isfinite(q_equation->a) , "An indeterminate number (INF or NAN) was received\n");
+   my_assert(isfinite(q_equation->b) , "An indeterminate number (INF or NAN) was received\n");
+   my_assert(isfinite(q_equation->c) , "An indeterminate number (INF or NAN) was received\n");
+   my_assert(q_equation->nRoots != UNKNOWN, "Internal function execution error1\n");
 
    switch (q_equation->nRoots) {
       case NO_ROOTS:

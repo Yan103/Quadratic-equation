@@ -25,6 +25,7 @@ int input_equation(equation *e_ptr, int attempts) {
       } else {
          printf("Enter coefficents a, b and c (enter quit to exit): ");
       }
+
       if (scanf("%lf %lf %lf", &a, &b, &c) == 3) {
          bool valid_str = true;
          for (int s = getchar(); s != '\n' && s != EOF; s = getchar()) {
@@ -32,26 +33,28 @@ int input_equation(equation *e_ptr, int attempts) {
                valid_str = false;
             }
          }
+
          if (valid_str && isfinite(a) && isfinite(b) && isfinite(c)) {
             break;
          } else {
-            printfRed("Incorrect input, enter numbers!\n");
+            printfRed("Incorrect input, enter real numbers!\n");
          }
+
       } else {
          if (scanf("%s", message) == 1) {
             if (strcmp("quit", message) == 0) {
-               printf("You wanted to leave)\n");
+               printf("You wanted to leave :(\n");
                exit(SUCCESS);
             }
 
-         if (attempts == input_count && attempts != 0) {
-            printf("Input attempts have ended\n");
-            exit(SUCCESS);
-         }
          for (int s = getchar(); s != '\n' && s != EOF; s = getchar()) {};
-         printfRed("Incorrect input, enter numbers or 'quit'!\n");
+         printfRed("Incorrect input, enter numbers or 'quit' to exit!\n");
          }
       }
+      if (attempts == input_count && attempts != 0) {
+            printf("Input attempts have ended...\n");
+            exit(SUCCESS);
+         }
    }
 
    e_ptr->a = a;
@@ -88,5 +91,5 @@ int output_result(const equation *q_equation) {
       default:
          printfRed("Something went wrong...\n");
          return PROGRAMM_ERROR;
-    }
+   }
 }

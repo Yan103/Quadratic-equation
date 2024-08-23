@@ -22,7 +22,8 @@ int start_programm(int argc, char *argv[]) {
                 printf("-s starts the input coefficients mode for solving equation (enabled by default)\n"
                        "-t starts the automatic testing mode (by reading data from a file)\n"
                        "-a {number} limited input mode for {number} attempts\n"
-                       "-h calls the help commands\n");
+                       "-h calls the help commands\n"
+                       "if you do not specify parameters, then -s will be used by default\n");
                 break;
             case 's':
                 input_equation(&quadratic_equation, 0);

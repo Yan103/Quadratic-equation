@@ -1,3 +1,4 @@
+#include <math.h>
 #include <stdio.h>
 #include <unistd.h>
 
@@ -9,9 +10,16 @@
 #include "tester_solver.h"
 #include "terminal_calls.h"
 
+// int argc, char *argv[]
+int main() {
 
-int main(int argc, char *argv[]) {
-    start_programm(argc, argv);
+    int a = 0;
+    scanf("%d", &a);
+    if (a == NULL || !isfinite(a)) {
+        printfRed("Error");
+        exit(INPUT_ERROR);
+    }
+    // start_programm(argc, argv);
 
     return SUCCESS;
 }

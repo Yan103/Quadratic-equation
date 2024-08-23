@@ -8,11 +8,6 @@
 //! @param [in] attempts - number of input attempts
 //! @note  The function starts the process of entering the coefficients of the equation, if additional parameters
 //!        are specified in the console at startup, it processes them;
-//!        --ENDLESS -> infinite number of input attempts (enter "quit" to end the program);
-//!        --ATTEMPTS {int number (obligatory parametr)} ->  limited number of attempts, if they are all over - the end of the program (if 0 is passed, the program will not start);
-//!        --SOLVER -> infinite number of input attempts (enter "quit" to end the program);
-//!        --TESTER -> start automatic check of the operation of equation solution function, result if output to the console;
-//!        if you do not specify parameters, then --ENDLESS will be used by default
 int input_equation(equation *e_ptr, int attempts);
 
 //-----------------------------------------------------

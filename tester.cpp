@@ -8,16 +8,16 @@
 #include "testfile_read.h"
 #include "testsystem.h"
 
-const int N_TESTS = 25; // Number of tests
+static const char *filename = "tests.txt";
 
 void tester_solver();
 
 void tester_solver() {
-    const char *filename = "tests.txt";
+
     tests test_arr[N_TESTS] = {};
 
     testfile_read(filename, test_arr);
-    
+
     int count = testfile_check(test_arr);
 
     if (count == N_TESTS) {

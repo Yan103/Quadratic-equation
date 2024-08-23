@@ -8,10 +8,10 @@
 #include "testsystem.h"
 
 //-----------------------------------------------------
-//! @param [in] test_ptr - pointer on structure
-//!
-//! @note  Function compares the expected (correct) data from the array of structures (test_ptr)
-//!        and compares them with the values returned by the program, returns the number of passed tests
+///< @param [in] test_ptr - pointer on structure
+///<
+///< @note  Function compares the expected (correct) data from the array of structures (test_ptr)
+///<        and compares them with the values returned by the program, returns the number of passed tests
 int testfile_check(tests *test_ptr);
 
 #endif //TESTFILE_CHECK_H

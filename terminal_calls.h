@@ -12,9 +12,9 @@
 #include "tester_solver.h"
 
 //-----------------------------------------------------
-//! @param [in] argc - argc argument
-//! @param [in] argv - argv argument
-//! @note Starts the program (if available, use command line arguments)
-int start_programm(int argc, char *argv[]);
+///< @param [in] argc - argc argument
+///< @param [in] argv - argv argument
+///< @note Starts the program (if available, use command line arguments)
+int start_programm(const int argc, char *argv[]);
 
 #endif // TERMINAL_CALLS_H

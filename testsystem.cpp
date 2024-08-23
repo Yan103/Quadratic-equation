@@ -6,7 +6,7 @@
 #include "solver.h"
 #include "struct_equation.h"
 
-const double EPS = 1e-4;
+static const double EPS = 1e-4;
 
 bool IS_EQUAL(double x, double y);
 
@@ -24,7 +24,10 @@ int TestSystem(int test_number, double a, double b, double c, nRoots exp_nRoots,
     if (exp_nRoots == NO_ROOTS && quadratic_equation.nRoots == NO_ROOTS) {
         count++;
     } else {
-        if (exp_nRoots != quadratic_equation.nRoots || !IS_EQUAL(exp_x1, quadratic_equation.x1) || !IS_EQUAL(exp_x2, quadratic_equation.x2)) {
+        if (exp_nRoots != quadratic_equation.nRoots
+            || !IS_EQUAL(exp_x1, quadratic_equation.x1)
+            || !IS_EQUAL(exp_x2, quadratic_equation.x2))
+        {
             printf("Error: Test %d (Get: x1=%lg x2=%lg nRoot=%d, \
                     expected: x1=%lg x2=%lg nRoot=%d)\n", test_number, \
                     quadratic_equation.x1, quadratic_equation.x2, quadratic_equation.nRoots, \

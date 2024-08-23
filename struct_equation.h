@@ -4,7 +4,7 @@
 #include "nRoots.h"
 
 //-----------------------------------------------------
-//! @note Information about equation (coefficients, discriminant, roots and their number)
+///< @note Information about equation (coefficients, discriminant, roots and their number)
 struct equation {
    double a, b, c;   //< Coefficients
    double D;         //< Discriminant

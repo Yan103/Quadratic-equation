@@ -19,7 +19,7 @@ int input_equation(equation *e_ptr, int attempts) {
    my_assert(isfinite(attempts), "An indeterminate number (INF or NAN) was received\n");
 
    int input_count = 0;
-   double a = 0, b = 0, c = 0;
+   double coeff_a = 0, coeff_b = 0, coeff_c = 0;
    char message[10] = {};
 
    while (1) {
@@ -29,7 +29,7 @@ int input_equation(equation *e_ptr, int attempts) {
          printf("Enter coefficents a, b and c (enter quit to exit): ");
       }
 
-      if (scanf("%lf %lf %lf", &a, &b, &c) == 3) {
+      if (scanf("%lf %lf %lf", &coeff_a, &coeff_b, &coeff_c) == 3) {
          bool valid_str = true;
          for (int s = getchar(); s != '\n' && s != EOF; s = getchar()) {
             if (!isspace(s)) {
@@ -37,7 +37,7 @@ int input_equation(equation *e_ptr, int attempts) {
             }
          }
 
-         if (valid_str && isfinite(a) && isfinite(b) && isfinite(c)) {
+         if (valid_str && isfinite(coeff_a) && isfinite(coeff_b) && isfinite(coeff_c)) {
             break;
          } else {
             printfRed("Incorrect input, enter real numbers!\n");
@@ -63,10 +63,10 @@ int input_equation(equation *e_ptr, int attempts) {
    my_assert(isfinite(e_ptr->b) , "An indeterminate number (INF or NAN) was received\n");
    my_assert(isfinite(e_ptr->c) , "An indeterminate number (INF or NAN) was received\n");
 
-   e_ptr->a = a;
-   e_ptr->b = b;
-   e_ptr->c = c;
-   e_ptr->D = b * b - 4 * a * c;
+   e_ptr->a = coeff_a;
+   e_ptr->b = coeff_b;
+   e_ptr->c = coeff_c;
+   e_ptr->D = coeff_b * coeff_b - 4 * coeff_a * coeff_c;
    e_ptr->x1 = e_ptr->x2 = e_ptr->nRoots = UNKNOWN;
    return SUCCESS;
 }

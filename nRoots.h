@@ -2,7 +2,7 @@
 #define NROOTS_H
 
 //-----------------------------------------------------
-//! @note Information about equation (coefficients, discriminant, roots and their number)
+///< @note Information about equation (coefficients, discriminant, roots and their number)
 enum nRoots {
    NO_ROOTS  =  0,   //< Equation has no roots
    ONE_ROOT  =  1,   //< Equation has 1 root

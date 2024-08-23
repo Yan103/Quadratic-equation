@@ -17,4 +17,11 @@
 //! @note  Function receives the coefficients of the equation and the expected (correct) values as input, if they do not match, it outputs the relevant information
 int TestSystem(int test_number, double a, double b, double c, nRoots exp_nRoots, double exp_x1, double exp_x2);
 
+//-----------------------------------------------------
+//! @param [in] x - first number
+//! @param [in] y - second number
+//!
+//! @note Function compares 2 entered numbers
+bool IS_EQUAL(double x, double y);
+
 #endif // TESTSYSTEM_H

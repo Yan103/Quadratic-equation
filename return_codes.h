@@ -10,6 +10,7 @@ enum returnCodes {
     INPUT_ERROR    = -2,   //< Input error (INF or NAN entered)
     PROGRAMM_ERROR = -3,   //< Program execution error
     FILE_ERROR     = -4,   //< Error reading a text file
+    NULL_          = -5,   //< Received NULL
 };
 
 #endif // RETURN_CODES_H

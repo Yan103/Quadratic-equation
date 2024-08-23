@@ -15,8 +15,8 @@ int output_result(const equation *q_equation);
 
 // Input coefficients
 int input_equation(equation *e_ptr, int attempts) {
-   my_assert(e_ptr != nullptr, "Null pointer was passed\n");
-   my_assert(isfinite(attempts), "An indeterminate number (INF or NAN) was received\n");
+   ASSERT(e_ptr != nullptr, "Null pointer was passed");
+   ASSERT(isfinite(attempts), "An indeterminate number (INF or NAN) was received");
 
    int input_count = 0;
    double coeff_a = 0, coeff_b = 0, coeff_c = 0;
@@ -59,9 +59,9 @@ int input_equation(equation *e_ptr, int attempts) {
             exit(SUCCESS);
          }
    }
-   my_assert(isfinite(e_ptr->a) , "An indeterminate number (INF or NAN) was received\n");
-   my_assert(isfinite(e_ptr->b) , "An indeterminate number (INF or NAN) was received\n");
-   my_assert(isfinite(e_ptr->c) , "An indeterminate number (INF or NAN) was received\n");
+   ASSERT(isfinite(e_ptr->a), "An indeterminate number (INF or NAN) was received");
+   ASSERT(isfinite(e_ptr->b), "An indeterminate number (INF or NAN) was received");
+   ASSERT(isfinite(e_ptr->c), "An indeterminate number (INF or NAN) was received");
 
    e_ptr->a = coeff_a;
    e_ptr->b = coeff_b;
@@ -72,11 +72,11 @@ int input_equation(equation *e_ptr, int attempts) {
 }
 
 int output_result(const equation *q_equation) {
-   my_assert(q_equation != nullptr , "Null pointer was passed\n");
-   my_assert(isfinite(q_equation->a) , "An indeterminate number (INF or NAN) was received\n");
-   my_assert(isfinite(q_equation->b) , "An indeterminate number (INF or NAN) was received\n");
-   my_assert(isfinite(q_equation->c) , "An indeterminate number (INF or NAN) was received\n");
-   my_assert(q_equation->nRoots != UNKNOWN, "Internal function execution error1\n");
+   ASSERT(q_equation != nullptr, "Null pointer was passed");
+   ASSERT(isfinite(q_equation->a), "An indeterminate number (INF or NAN) was received");
+   ASSERT(isfinite(q_equation->b), "An indeterminate number (INF or NAN) was received");
+   ASSERT(isfinite(q_equation->c), "An indeterminate number (INF or NAN) was received");
+   ASSERT(q_equation->nRoots != UNKNOWN, "Internal function execution error");
 
    switch (q_equation->nRoots) {
       case NO_ROOTS:

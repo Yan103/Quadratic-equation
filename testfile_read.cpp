@@ -9,8 +9,8 @@
 int testfile_read(const char *filename, tests *test_ptr);
 
 int testfile_read(const char *filename, tests *test_ptr) {
-    my_assert(test_ptr != nullptr , "Null pointer was passed\n");
-    my_assert(filename != nullptr , "Null pointer was passed\n");
+    ASSERT(test_ptr != nullptr, "Null pointer was passed");
+    ASSERT(filename != nullptr, "Null pointer was passed");
 
     double coeff_a = 0, coeff_b = 0, coeff_c = 0, exp_x1 = 0, exp_x2 = 0;
     int fnRoots = 0;

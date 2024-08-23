@@ -14,7 +14,7 @@
 int start_programm(const int argc, char *argv[]);
 
 int start_programm(const int argc, char *argv[]) {
-    my_assert(argv != nullptr , "Null pointer was passed\n");
+    ASSERT(argv != nullptr, "Null pointer was passed");
 
     int opt = 0, next = 0, startFlag = 0;
     equation quadratic_equation = {};

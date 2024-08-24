@@ -1,8 +1,12 @@
+/*!
+    \file
+    A file with a description of the codes containing information about the number of roots of the equation
+*/
+
 #ifndef NROOTS_H
 #define NROOTS_H
 
-//-----------------------------------------------------
-///< @note Information about equation (coefficients, discriminant, roots and their number)
+/// Information about equation (coefficients, discriminant, roots and their number)
 enum nRoots {
    NO_ROOTS  =  0,   //< Equation has no roots
    ONE_ROOT  =  1,   //< Equation has 1 root

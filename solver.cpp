@@ -10,8 +10,8 @@
 static const double EPS = 1e-8;
 static const int PLUG = -1;
 
-bool IS_ZERO(double x) {
-   return fabs(x) < EPS;
+bool IS_ZERO(double number) {
+   return fabs(number) < EPS;
 }
 
 static void swap(double *first, double *second) {

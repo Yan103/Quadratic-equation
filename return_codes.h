@@ -1,8 +1,12 @@
+/*!
+    \file
+    A file with a description of the returned codes
+*/
+
 #ifndef RETURN_CODES_H
 #define RETURN_CODES_H
 
-//-----------------------------------------------------
-///< @note Information about return codes
+/// Information about return codes
 enum returnCodes {
     SUCCESS        =  0,   //< Programm was successfully completed
     USER_OUT       =  1,   //< Programm was forcibly terminated by user

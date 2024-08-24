@@ -1,3 +1,8 @@
+/*!
+    \file
+    File with the declaration of the my_assert function
+*/
+
 #ifndef TERMINAL_CALLS_H
 #define TERMINAL_CALLS_H
 
@@ -13,10 +18,11 @@
 #include "struct_equation.h"
 #include "tester_solver.h"
 
-//-----------------------------------------------------
-///< @param [in] argc - argc argument
-///< @param [in] argv - argv argument
-///< @note Starts the program (if available, use command line arguments)
+/*!
+    Function that starts the program (if available, use command line arguments)
+    \param [in] argc - argc argument
+    \param [in] argv - argv argument
+*/
 int start_programm(const int argc, char *argv[]);
 
 #endif // TERMINAL_CALLS_H

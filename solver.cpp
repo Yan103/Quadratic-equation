@@ -10,10 +10,12 @@
 static const double EPS = 1e-8;
 static const int PLUG = -1;
 
+/// Compare number with 0
 bool IS_ZERO(double number) {
    return fabs(number) < EPS;
 }
 
+/// Swap 2 numbers
 static void swap(double *first, double *second) {
    double tmp = *first;
    *first = *second;

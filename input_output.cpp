@@ -10,6 +10,7 @@
 #include "nRoots.h"
 #include "return_codes.h"
 
+/// Checking the string for correct input
 static int validStr_check(double *coeff_a, double *coeff_b, double *coeff_c) {
    bool valid_str = true;
    for (int s = getchar(); s != '\n' && s != EOF; s = getchar()) {
@@ -26,7 +27,7 @@ static int validStr_check(double *coeff_a, double *coeff_b, double *coeff_c) {
    }
 }
 
-// Input coefficients
+/// Input coefficients
 int input_equation(equation *equation_ptr, int attempts) {
    ASSERT(equation_ptr != nullptr, "Null pointer was passed");
    ASSERT(isfinite(attempts), "An indeterminate number (INF or NAN) was received");
@@ -65,23 +66,24 @@ int input_equation(equation *equation_ptr, int attempts) {
             return USER_OUT;
       }
    }
-   ASSERT(isfinite(equation_ptr->a), "An indeterminate number (INF or NAN) was received");
-   ASSERT(isfinite(equation_ptr->b), "An indeterminate number (INF or NAN) was received");
-   ASSERT(isfinite(equation_ptr->c), "An indeterminate number (INF or NAN) was received");
+   ASSERT(isfinite(equation_ptr->coeff_a), "An indeterminate number (INF or NAN) was received");
+   ASSERT(isfinite(equation_ptr->coeff_b), "An indeterminate number (INF or NAN) was received");
+   ASSERT(isfinite(equation_ptr->coeff_c), "An indeterminate number (INF or NAN) was received");
 
-   equation_ptr->a = coeff_a;
-   equation_ptr->b = coeff_b;
-   equation_ptr->c = coeff_c;
+   equation_ptr->coeff_a = coeff_a;
+   equation_ptr->coeff_b = coeff_b;
+   equation_ptr->coeff_c = coeff_c;
    equation_ptr->D = coeff_b * coeff_b - 4 * coeff_a * coeff_c;
    equation_ptr->x1 = equation_ptr->x2 = equation_ptr->nRoots = UNKNOWN;
    return SUCCESS;
 }
 
+/// Output coefficients
 int output_result(const equation *equation_ptr) {
    ASSERT(equation_ptr != nullptr, "Null pointer was passed");
-   ASSERT(isfinite(equation_ptr->a), "An indeterminate number (INF or NAN) was received");
-   ASSERT(isfinite(equation_ptr->b), "An indeterminate number (INF or NAN) was received");
-   ASSERT(isfinite(equation_ptr->c), "An indeterminate number (INF or NAN) was received");
+   ASSERT(isfinite(equation_ptr->coeff_a), "An indeterminate number (INF or NAN) was received");
+   ASSERT(isfinite(equation_ptr->coeff_b), "An indeterminate number (INF or NAN) was received");
+   ASSERT(isfinite(equation_ptr->coeff_c), "An indeterminate number (INF or NAN) was received");
    ASSERT(equation_ptr->nRoots != UNKNOWN, "Internal function execution error");
 
    switch (equation_ptr->nRoots) {

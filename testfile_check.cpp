@@ -2,6 +2,7 @@
 
 #include "my_assert.h"
 
+/// Start checking expected data with valid ones
 int testfile_check(tests *test_ptr) {
     ASSERT(test_ptr != nullptr, "Null pointer was passed");
 

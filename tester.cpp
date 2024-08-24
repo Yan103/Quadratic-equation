@@ -7,6 +7,7 @@
 
 static const char *filename = "tests.txt";
 
+/// Start tests
 void tester_solver() {
 
     tests test_arr[N_TESTS] = {};

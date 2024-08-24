@@ -4,6 +4,7 @@
 #include "my_assert.h"
 #include "return_codes.h"
 
+/// Reading expected data from a file
 int testfile_read(const char *filename, tests *test_ptr) {
     ASSERT(test_ptr != nullptr, "Null pointer was passed");
     ASSERT(filename != nullptr, "Null pointer was passed");

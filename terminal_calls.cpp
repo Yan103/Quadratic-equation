@@ -1,5 +1,6 @@
 #include "terminal_calls.h"
 
+/// Start the programm
 int start_programm(const int argc, char *argv[]) {
     ASSERT(argv != nullptr, "Null pointer was passed");
 

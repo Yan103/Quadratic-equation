@@ -7,10 +7,12 @@
 
 static const double EPS = 1e-5;
 
+/// Comparing two numbers
 bool IS_EQUAL(double first, double second) {
     return fabs(first - second) < EPS;
 }
 
+/// Comparison of expected and actual data
 int TestSystem(int test_number, double coeff_a, double coeff_b, double coeff_c,
                nRoots exp_nRoots, double exp_x1, double exp_x2)
     {

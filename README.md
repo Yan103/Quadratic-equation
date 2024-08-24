@@ -31,7 +31,8 @@ make clean
 
 ## Examples of work
 When using the normal mode (-s by default), the user is prompted to enter the coefficients of the equation and, if entered correctly, the program will print the solutions of the equation
-![Alt text](https://github.com/Yan103/Quadratic-equation/tree/tmp/img/ex1.png)
+
+![Alt text](https://github.com/Yan103/Quadratic-equation/tree/tmp/img/ex1.png?raw=true)
 
 
 ## Contact information

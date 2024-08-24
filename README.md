@@ -32,15 +32,22 @@ make clean
 ## Examples of work
 When using the normal mode (-s by default), the user is prompted to enter the coefficients of the equation and, if entered correctly, the program will print the solutions of the equation
 
-![Alt text](https://github.com/Yan103/Quadratic-equation/tree/tmp/img/ex1.png?raw=true)
+![Alt text](img/ex1.png)
 
+While entering the coefficients, the user can write the word "quit" and the program will finish its execution ahead of time
+
+![Alt text](img/ex2.png)
+
+If attempts end when using the operation mode with attempts (-a {number}), then the program also ends
+
+![Alt text](img/ex3.png)
 
 ## Contact information
 If you are interested in this project or have any questions/suggestions about the project, you can contact the author:
 
-mail: fazleev.yans@phystech.edu
+Mail: fazleev.yans@phystech.edu
 
-telegram: @yan_ya_n3
+Telegram: @yan_ya_n3
 
 ![Alt Text](https://media.giphy.com/media/vFKqnCdLPNOKc/giphy.gif)
 

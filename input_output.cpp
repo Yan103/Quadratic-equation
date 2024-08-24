@@ -1,6 +1,5 @@
 #include "input_output.h"
 
-#include <assert.h>
 #include <ctype.h>
 #include <math.h>
 #include <stdio.h>
@@ -28,8 +27,8 @@ static int validStr_check(double *coeff_a, double *coeff_b, double *coeff_c) {
 }
 
 // Input coefficients
-int input_equation(equation *e_ptr, int attempts) {
-   ASSERT(e_ptr != nullptr, "Null pointer was passed");
+int input_equation(equation *equation_ptr, int attempts) {
+   ASSERT(equation_ptr != nullptr, "Null pointer was passed");
    ASSERT(isfinite(attempts), "An indeterminate number (INF or NAN) was received");
 
    int input_count = 0;
@@ -66,34 +65,34 @@ int input_equation(equation *e_ptr, int attempts) {
             return USER_OUT;
       }
    }
-   ASSERT(isfinite(e_ptr->a), "An indeterminate number (INF or NAN) was received");
-   ASSERT(isfinite(e_ptr->b), "An indeterminate number (INF or NAN) was received");
-   ASSERT(isfinite(e_ptr->c), "An indeterminate number (INF or NAN) was received");
+   ASSERT(isfinite(equation_ptr->a), "An indeterminate number (INF or NAN) was received");
+   ASSERT(isfinite(equation_ptr->b), "An indeterminate number (INF or NAN) was received");
+   ASSERT(isfinite(equation_ptr->c), "An indeterminate number (INF or NAN) was received");
 
-   e_ptr->a = coeff_a;
-   e_ptr->b = coeff_b;
-   e_ptr->c = coeff_c;
-   e_ptr->D = coeff_b * coeff_b - 4 * coeff_a * coeff_c;
-   e_ptr->x1 = e_ptr->x2 = e_ptr->nRoots = UNKNOWN;
+   equation_ptr->a = coeff_a;
+   equation_ptr->b = coeff_b;
+   equation_ptr->c = coeff_c;
+   equation_ptr->D = coeff_b * coeff_b - 4 * coeff_a * coeff_c;
+   equation_ptr->x1 = equation_ptr->x2 = equation_ptr->nRoots = UNKNOWN;
    return SUCCESS;
 }
 
-int output_result(const equation *q_equation) {
-   ASSERT(q_equation != nullptr, "Null pointer was passed");
-   ASSERT(isfinite(q_equation->a), "An indeterminate number (INF or NAN) was received");
-   ASSERT(isfinite(q_equation->b), "An indeterminate number (INF or NAN) was received");
-   ASSERT(isfinite(q_equation->c), "An indeterminate number (INF or NAN) was received");
-   ASSERT(q_equation->nRoots != UNKNOWN, "Internal function execution error");
+int output_result(const equation *equation_ptr) {
+   ASSERT(equation_ptr != nullptr, "Null pointer was passed");
+   ASSERT(isfinite(equation_ptr->a), "An indeterminate number (INF or NAN) was received");
+   ASSERT(isfinite(equation_ptr->b), "An indeterminate number (INF or NAN) was received");
+   ASSERT(isfinite(equation_ptr->c), "An indeterminate number (INF or NAN) was received");
+   ASSERT(equation_ptr->nRoots != UNKNOWN, "Internal function execution error");
 
-   switch (q_equation->nRoots) {
+   switch (equation_ptr->nRoots) {
       case NO_ROOTS:
          printf("The equation has no real roots\n");
          return SUCCESS;
       case ONE_ROOT:
-         printf("The equation has 1 root: %g\n", q_equation->x1);
+         printf("The equation has 1 root: %g\n", equation_ptr->x1);
          return SUCCESS;
       case TWO_ROOTS:
-         printf("The equation has 2 root: %g and %g\n", q_equation->x1, q_equation->x2);
+         printf("The equation has 2 root: %g and %g\n", equation_ptr->x1, equation_ptr->x2);
          return SUCCESS;
       case INF_ROOTS:
          printf("The equation has an infinite number of solutions\n");

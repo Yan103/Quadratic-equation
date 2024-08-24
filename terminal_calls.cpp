@@ -16,24 +16,26 @@ int start_programm(const int argc, char *argv[]) {
                        "-a {number} limited input mode for {number} attempts\n"
                        "-h calls the help commands\n"
                        "if you do not specify parameters, then -s will be used by default\n");
-                break;
+                return SUCCESS;
             case 's':
                 next = input_equation(&quadratic_equation, 0);
                 if (next != USER_OUT) {
                     solve_equation(&quadratic_equation);
                     output_result(&quadratic_equation);
                 }
-                break;
+                return SUCCESS;
             case 't':
                 tester_solver();
-                break;
+                return SUCCESS;
             case 'a':
                 next = input_equation(&quadratic_equation, atoi(optarg));
                 if (next != USER_OUT) {
                     solve_equation(&quadratic_equation);
                     output_result(&quadratic_equation);
+                    return SUCCESS;
+                } else {
+                    return USER_OUT;
                 }
-                break;
             default:
                 printfRed("Flag error!\n");
                 return UNKNOWN_FLAG;
@@ -45,8 +47,10 @@ int start_programm(const int argc, char *argv[]) {
         if (next != USER_OUT) {
             solve_equation(&quadratic_equation);
             output_result(&quadratic_equation);
+            return SUCCESS;
+        } else {
+            return USER_OUT;
         }
     }
-
     return SUCCESS;
 }

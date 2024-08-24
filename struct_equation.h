@@ -6,7 +6,7 @@
 //-----------------------------------------------------
 ///< @note Information about equation (coefficients, discriminant, roots and their number)
 struct equation {
-   double a, b, c;   //< Coefficients
+   double coeff_a, coeff_b, coeff_c;   //< Coefficients
    double D;         //< Discriminant
    double x1, x2;    //< Roots x1 < x2 (if there is one root, it is in x1) */
    nRoots nRoots;    //< Information about number of roots */

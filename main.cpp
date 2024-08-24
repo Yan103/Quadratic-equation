@@ -1,6 +1,3 @@
-#include <math.h>
-#include <stdio.h>
-
 #include "terminal_calls.h"
 
 int main(const int argc, char *argv[]) {

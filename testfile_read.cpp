@@ -22,9 +22,12 @@ int testfile_read(const char *filename, tests *test_ptr) {
     while((fscanf(testfile, "%lf %lf %lf %d %lf %lf\n",
            &coeff_a, &coeff_b, &coeff_c, &fnRoots, &exp_x1, &exp_x2)) != EOF)
     {
-        test_ptr[i] = {coeff_a, coeff_b, coeff_c,
-                       (nRoots)fnRoots,
-                       exp_x1, exp_x2};
+        test_ptr[i] = {.coeff_a = coeff_a,
+                       .coeff_b = coeff_b,
+                       .coeff_c = coeff_c,
+                       .exp_nRoots = (nRoots)fnRoots,
+                       .exp_x1 = exp_x1,
+                       .exp_x2 = exp_x2};
         i++;
     }
     fclose(testfile);

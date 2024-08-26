@@ -11,9 +11,9 @@
 /*!
     Function that, in case of an error, prints where it occurred and terminates the program
     \param [out] equation_ptr - equation pointer
-    \param [in] attempts - Number of input attempts
+    \param [in]      attempts - Number of input attempts
 */
-int input_equation(equation *equation_ptr, int attempts);
+int input_equation(equation *equation_ptr, const int attempts);
 
 /*!
     Function that outputs information about the roots of the equation or their absence

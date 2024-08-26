@@ -13,13 +13,6 @@ int testfile_read(FILE *file_name, tests *test_ptr) {
     double exp_x1 = 0, exp_x2 = 0;
     int fn_roots = 0;
 
-    /// FILE *testfile = fopen(filename, "r");
-
-    /* if (!testfile) {
-        printfRed("Error occured while opening file\n");
-        return FILE_ERROR;
-    } */
-
     int i = 0;
     while((fscanf(file_name, "%lf %lf %lf %d %lf %lf\n",
                   &coeff_a, &coeff_b, &coeff_c,
@@ -28,7 +21,7 @@ int testfile_read(FILE *file_name, tests *test_ptr) {
         test_ptr[i] = {.coeff_a = coeff_a,
                        .coeff_b = coeff_b,
                        .coeff_c = coeff_c,
-                       .exp_nRoots = (nRoots)fn_roots,
+                       .exp_number_roots = (number_roots)fn_roots,
                        .exp_x1 = exp_x1,
                        .exp_x2 = exp_x2};
         i++;

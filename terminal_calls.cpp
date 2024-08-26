@@ -1,7 +1,7 @@
 #include "terminal_calls.h"
 
 /// Start the programm
-int start_programm(const int argc, char *argv[]) {
+int start_solve_programm(const int argc, char *argv[]) {
     ASSERT(argv != nullptr, "Null pointer was passed");
 
     int opt = 0, next = 0;
@@ -10,6 +10,7 @@ int start_programm(const int argc, char *argv[]) {
 
     while((opt = getopt(argc, argv, "a:tshc")) != -1) {
         start_flag = true;
+
         switch (opt) {
             case 'h':
                 printf("%s", HELP_TEXT);
@@ -28,8 +29,8 @@ int start_programm(const int argc, char *argv[]) {
                     tester_solver(argv[2]);
                 }
                 else {
-                    printfRed("Your file has not been found! The standard test file is launched:\n");
-                    tester_solver("tests.txt");
+                    printf(RED("Your file has not been found! The standard test file (tests.txt) is launched:\n"));
+                    tester_solver(TESTS_FILENAME);
                 }
 
                 return SUCCESS;
@@ -48,7 +49,7 @@ int start_programm(const int argc, char *argv[]) {
 
                 return SUCCESS;
             default:
-                printfRed("Flag error!\n");
+                printf(RED("Flag error!\n"));
 
                 return UNKNOWN_FLAG;
         }

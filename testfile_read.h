@@ -8,7 +8,7 @@
 
 #include <stdio.h>
 
-#include "nRoots.h"
+#include "number_roots.h"
 #include "struct_tests.h"
 
 /*!

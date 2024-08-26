@@ -6,13 +6,16 @@
 #ifndef STRUCTER_TEST_H
 #define STRUCTER_TEST_H
 
-#include "nRoots.h"
+#include "number_roots.h"
 
 /// Information about test (input) data
 struct tests {
-    double coeff_a, coeff_b, coeff_c;       //< Coefficients
-    nRoots exp_nRoots;                      //< Expected value of nRoots
-    double exp_x1, exp_x2;                  //< Expected values of x1 and x2
+    double coeff_a;                 ///< Coefficient A
+    double coeff_b;                 ///< Coefficient B
+    double coeff_c;                 ///< Coefficient C
+    number_roots exp_number_roots;  ///< Expected value of number_roots
+    double exp_x1;                  ///< Expected values of x1
+    double exp_x2;                  ///< Expected values of x2
 };
 
 #endif //STRUCTER_TEST_H

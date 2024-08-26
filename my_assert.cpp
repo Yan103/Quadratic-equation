@@ -3,9 +3,9 @@
 #include <cstdlib>
 
 /// Terminates the execution of the program when an error is detected
-void my_assert(bool condition, const char *textError, const char *file, const char *func, int line) {
+void my_assert(bool condition, const char *text_error, const char *file, const char *func, int line) {
     if (!(condition)) {
-        printfRed("%s in: %s -> %s -> %d", textError, file, func, line);
+        printf(RED("%s in: %s -> %s -> %d"), text_error, file, func, line);
         abort();
     }
 }

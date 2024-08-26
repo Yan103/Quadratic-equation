@@ -7,12 +7,13 @@
 
 #include "color_printf.h"
 #include "my_assert.h"
-#include "nRoots.h"
+#include "number_roots.h"
 #include "return_codes.h"
 
 /// Checking the string for correct input
 static int validStr_check(double *coeff_a, double *coeff_b, double *coeff_c) {
    bool valid_str = true;
+
    for (int s = getchar(); s != '\n' && s != EOF; s = getchar()) {
       if (!isspace(s)) {
          valid_str = false;
@@ -22,14 +23,14 @@ static int validStr_check(double *coeff_a, double *coeff_b, double *coeff_c) {
    if (valid_str && isfinite(*coeff_a) && isfinite(*coeff_b) && isfinite(*coeff_c)) {
       return SUCCESS;
    } else {
-      printfRed("Incorrect input, enter real numbers!\n");
+      printf(RED("Incorrect input, enter real numbers!\n"));
 
       return INPUT_ERROR;
    }
 }
 
 /// Input coefficients
-int input_equation(equation *equation_ptr, int attempts) {
+int input_equation(equation *equation_ptr, const int attempts) {
    ASSERT(equation_ptr != nullptr, "Null pointer was passed");
    ASSERT(isfinite(attempts), "An indeterminate number (INF or NAN) was received");
 
@@ -47,9 +48,9 @@ int input_equation(equation *equation_ptr, int attempts) {
       if (scanf("%lf %lf %lf", &coeff_a, &coeff_b, &coeff_c) == 3) {
 
          int next = validStr_check(&coeff_a, &coeff_b, &coeff_c);
-         if (next == SUCCESS) {
-            break;
-         }
+
+         if (next == SUCCESS) break;
+
 
       } else {
          if (scanf("%s", message) == 1) {
@@ -61,7 +62,7 @@ int input_equation(equation *equation_ptr, int attempts) {
 
          for (int s = getchar(); s != '\n' && s != EOF; s = getchar()) {};
 
-         printfRed("Incorrect input, enter numbers or 'quit' to exit!\n");
+         printf(RED("Incorrect input, enter numbers or 'quit' to exit!\n"));
          }
       }
 
@@ -80,20 +81,20 @@ int input_equation(equation *equation_ptr, int attempts) {
    equation_ptr->coeff_b = coeff_b;
    equation_ptr->coeff_c = coeff_c;
    equation_ptr->D = coeff_b * coeff_b - 4 * coeff_a * coeff_c;
-   equation_ptr->x1 = equation_ptr->x2 = equation_ptr->nRoots = UNKNOWN;
+   equation_ptr->x1 = equation_ptr->x2 = equation_ptr->number_roots = UNKNOWN;
 
    return SUCCESS;
 }
 
-/// Output coefficients
+/// Output results
 int output_result(const equation *equation_ptr) {
    ASSERT(equation_ptr != nullptr, "Null pointer was passed");
    ASSERT(isfinite(equation_ptr->coeff_a), "An indeterminate number (INF or NAN) was received");
    ASSERT(isfinite(equation_ptr->coeff_b), "An indeterminate number (INF or NAN) was received");
    ASSERT(isfinite(equation_ptr->coeff_c), "An indeterminate number (INF or NAN) was received");
-   ASSERT(equation_ptr->nRoots != UNKNOWN, "Internal function execution error");
+   ASSERT(equation_ptr->number_roots != UNKNOWN, "Internal function execution error");
 
-   switch (equation_ptr->nRoots) {
+   switch (equation_ptr->number_roots) {
       case NO_ROOTS:
          printf("The equation has no real roots\n");
 
@@ -115,8 +116,8 @@ int output_result(const equation *equation_ptr) {
 
          return SUCCESS;
       default:
-         printfRed("Something went wrong...\n");
-         
+         printf(RED("Something went wrong...\n"));
+
          return PROGRAMM_ERROR;
    }
 }

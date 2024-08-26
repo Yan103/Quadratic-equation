@@ -8,9 +8,8 @@
 
 #include <stdio.h>
 
-#include "nRoots.h"
+#include "number_roots.h"
 #include "struct_tests.h"
-#include "testsystem.h"
 
 /*!
     Function compares the expected (correct) data from the array of structures (test_ptr)

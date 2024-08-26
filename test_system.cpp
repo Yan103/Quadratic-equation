@@ -1,3 +1,8 @@
+/*!
+    \file
+    A file describing the function of testing the algorithm for solving the equation
+*/
+
 #include "test_system.h"
 
 #include <math.h>
@@ -7,12 +12,28 @@
 
 static const double EPS = 1e-5; /// A small value to compare numbers of the type
 
-/// Comparing two numbers
-bool is_equal(double first, double second) {
+/*!
+    The function compares two numbers
+    \param [in]  first - first number
+    \param [in] second - second number
+    \return Returns 1 if the numbers are equal, otherwise 0
+*/
+static bool is_equal(double first, double second) {
     return fabs(first - second) < EPS;
 }
 
-/// Comparison of expected and actual data
+/*!
+    Function receives the coefficients of the equation and the expected (correct)
+     values as input, if they do not match, it outputs the relevant information
+    \param [in]      test_number - number of test
+    \param [in]          coeff_a - coefficient A
+    \param [in]          coeff_b - coefficient B
+    \param [in]          coeff_c - coefficient C
+    \param [in] exp_number_roots - expected value number_roots
+    \param [in]           exp_x1 - expected value x1
+    \param [in]           exp_x2 - expected value x2
+    \return Returns the count of completed tests
+*/
 int test_system(int test_number, double coeff_a, double coeff_b, double coeff_c,
                number_roots exp_number_roots, double exp_x1, double exp_x2)
     {

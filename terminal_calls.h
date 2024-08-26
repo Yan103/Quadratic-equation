@@ -1,6 +1,6 @@
 /*!
     \file
-    File with the declaration of the my_assert function
+    The file with the description of the starting function
 */
 
 #ifndef TERMINAL_CALLS_H
@@ -37,6 +37,7 @@ const char HELP_TEXT[] = "-s starts the input coefficients mode for solving equa
     Function that starts the program (if available, use command line arguments)
     \param [in] argc - argc argument
     \param [in] argv - argv argument
+    \return Returns the status of the start function execution
 */
 int start_solve_programm(const int argc, char *argv[]);
 

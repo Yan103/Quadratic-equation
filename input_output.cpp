@@ -1,3 +1,8 @@
+/*!
+    \file
+    A file describing the input and output functions
+*/
+
 #include "input_output.h"
 
 #include <ctype.h>
@@ -10,7 +15,13 @@
 #include "number_roots.h"
 #include "return_codes.h"
 
-/// Checking the string for correct input
+/*!
+   Checking the string for correct input
+   \param [in] coeff_a - Coefficient A
+   \param [in] coeff_b - Coefficient B
+   \param [in] coeff_c - Coefficient C
+   \return If the string is valid, it returns 1, otherwise 0
+*/
 static int validStr_check(double *coeff_a, double *coeff_b, double *coeff_c) {
    bool valid_str = true;
 
@@ -29,7 +40,12 @@ static int validStr_check(double *coeff_a, double *coeff_b, double *coeff_c) {
    }
 }
 
-/// Input coefficients
+/*!
+   Function that, in case of an error, prints where it occurred and terminates the program
+   \param [out] equation_ptr - equation pointer
+   \param [in]      attempts - Number of input attempts
+   \return Returns the status of the completed coefficient entry
+*/
 int input_equation(equation *equation_ptr, const int attempts) {
    ASSERT(equation_ptr != nullptr, "Null pointer was passed");
    ASSERT(isfinite(attempts), "An indeterminate number (INF or NAN) was received");
@@ -53,7 +69,7 @@ int input_equation(equation *equation_ptr, const int attempts) {
 
 
       } else {
-         if (scanf("%s", message) == 1) {
+         if (scanf("%100s", message) == 1) {
             if (strcmp("quit", message) == 0) {
                printf("You wanted to leave :(\n");
 
@@ -86,7 +102,11 @@ int input_equation(equation *equation_ptr, const int attempts) {
    return SUCCESS;
 }
 
-/// Output results
+/*!
+   Function that outputs information about the roots of the equation or their absence
+   \param [in] equation_ptr - equation pointer
+   \return Returns the status of the completed coefficient output
+*/
 int output_result(const equation *equation_ptr) {
    ASSERT(equation_ptr != nullptr, "Null pointer was passed");
    ASSERT(isfinite(equation_ptr->coeff_a), "An indeterminate number (INF or NAN) was received");

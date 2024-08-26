@@ -1,6 +1,16 @@
+/*!
+    \file
+    The file with the description of the starting function
+*/
+
 #include "terminal_calls.h"
 
-/// Start the programm
+/*!
+    Function that starts the program (if available, use command line arguments)
+    \param [in] argc - argc argument
+    \param [in] argv - argv argument
+    \return Returns the status of the start function execution
+*/
 int start_solve_programm(const int argc, char *argv[]) {
     ASSERT(argv != nullptr, "Null pointer was passed");
 

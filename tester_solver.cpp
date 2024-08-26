@@ -1,3 +1,8 @@
+/*!
+    \file
+    A file with a description of the function that starts checking the algorithm for solving the equation
+*/
+
 #include "tester_solver.h"
 
 #include <stdio.h>
@@ -6,7 +11,12 @@
 #include "my_assert.h"
 #include "return_codes.h"
 
-/// Start tests
+/*!
+    Function reads the test data from file and checks the correctness of
+    the equation solution function, result if output to the console
+    \param [in] tests_filename - the name of the file containing the test data
+    \return Returns the verification status of the algorithm for solving the equation
+*/
 int tester_solver(const char *tests_filename) {
 
     FILE *test_file = fopen(tests_filename, "r");
@@ -36,6 +46,6 @@ int tester_solver(const char *tests_filename) {
     } else {
         printf(RED("END OF TEST! Successfully %d/%d\n"), count, number_tests);
     }
-    
+
     return SUCCESS;
 }

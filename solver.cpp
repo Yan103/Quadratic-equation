@@ -1,3 +1,8 @@
+/*!
+   \file
+   A file with a description of the functions for solving the equation
+*/
+
 #include "solver.h"
 
 #include <math.h>
@@ -8,21 +13,32 @@
 #include "struct_equation.h"
 
 static const double EPS = 1e-8; /// A small value to compare numbers of the type
-static const int PLUG = -1;     /// Special value
+static const int PLUG = -1;     /// Special value to keep track of the number of roots
 
-/// Compare number with 0
+/*!
+   The function compares a number with zero
+   \param [in] number - number
+   \return Returns 1 if the number is zero, otherwise 0
+*/
 static bool is_zero(double number) {
    return fabs(number) < EPS;
 }
 
-/// Swap 2 numbers
+/*!
+   The function changes the values of two pointers
+   \param [out] equation_ptr - equation pointer
+   \param [out] equation_ptr - equation pointer
+*/
 static void swap(double *first, double *second) {
    double tmp = *first;
    *first = *second;
    *second = tmp;
 }
 
-// Any number is a solution of equation
+/*!
+   The function records that the equation has an infinite number of solutions
+   \param [out] equation_ptr - equation pointer
+*/
 static void has_inf_roots(equation *equation_ptr) {
    ASSERT(equation_ptr != nullptr, "Null pointer was passed");
    ASSERT(isfinite(equation_ptr->coeff_a), "An indeterminate number (INF or NAN) was received");
@@ -34,7 +50,10 @@ static void has_inf_roots(equation *equation_ptr) {
    equation_ptr->x1 = equation_ptr->x2 = PLUG;
 }
 
-// Equation has no real roots
+/*!
+   The function records that the equation has no valid solutions
+   \param [out] equation_ptr - equation pointer
+*/
 static void doesnt_have_real_roots(equation *equation_ptr) {
    ASSERT(equation_ptr != nullptr, "Null pointer was passed");
    ASSERT(isfinite(equation_ptr->coeff_a), "An indeterminate number (INF or NAN) was received");
@@ -46,7 +65,10 @@ static void doesnt_have_real_roots(equation *equation_ptr) {
    equation_ptr->x1 = equation_ptr->x2 = PLUG;
 }
 
-// Equation becomes linear
+/*!
+   The function solves the linear equation (a == 0)
+   \param [out] equation_ptr - equation pointer
+*/
 static void solve_linear_equation(equation *equation_ptr) {
    ASSERT(equation_ptr != nullptr, "Null pointer was passed");
    ASSERT(isfinite(equation_ptr->coeff_a), "An indeterminate number (INF or NAN) was received");
@@ -59,7 +81,10 @@ static void solve_linear_equation(equation *equation_ptr) {
    equation_ptr->x2 = PLUG;
 }
 
-// Solving quadratic equation
+/*!
+   The function solves the square equation (a != 0)
+   \param [out] equation_ptr - equation pointer
+*/
 static void solve_quadratic_equation(equation *equation_ptr) {
    ASSERT(equation_ptr != nullptr, "Null pointer was passed");
    ASSERT(isfinite(equation_ptr->coeff_a), "An indeterminate number (INF or NAN) was received");
@@ -76,7 +101,7 @@ static void solve_quadratic_equation(equation *equation_ptr) {
       if (equation_ptr->x1 > equation_ptr->x2) {
          swap(&equation_ptr->x1, &equation_ptr->x2);
       }
-      
+
    } else {
       equation_ptr->number_roots = ONE_ROOT;
       equation_ptr->x1 = (is_zero(equation_ptr->coeff_b)) ? 0 : -equation_ptr->coeff_b / (2 * equation_ptr->coeff_a);
@@ -84,7 +109,10 @@ static void solve_quadratic_equation(equation *equation_ptr) {
    }
 }
 
-// Solving the equation (get information about the number of roots and the roots themselves)
+/*!
+   The function starts the process of solving the equation
+   \param [in] equation_ptr - equation pointer
+*/
 void solve_equation(equation *equation_ptr) {
    ASSERT(equation_ptr != nullptr, "Null pointer was passed");
    ASSERT(isfinite(equation_ptr->coeff_a), "An indeterminate number (INF or NAN) was received");
@@ -110,4 +138,3 @@ void solve_equation(equation *equation_ptr) {
         }
    }
 }
-

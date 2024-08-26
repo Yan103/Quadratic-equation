@@ -1,10 +1,20 @@
+/*!
+    \file
+    The file describing the function of reading test data from a file
+*/
+
 #include "testfile_read.h"
 
 #include "color_printf.h"
 #include "my_assert.h"
 #include "return_codes.h"
 
-/// Reading expected data from a file
+/*!
+    Function reads data from a file intended for testing the program and writes it to an array of structures (test_ptr)
+    \param [in]  filename - name of file with tests
+    \param [out] test_ptr - pointer on structure
+    \return Returns the status of the process of reading test data from a file
+*/
 int testfile_read(FILE *file_name, tests *test_ptr) {
     ASSERT(test_ptr != nullptr, "Null pointer was passed");
     ASSERT(file_name != nullptr, "Null pointer was passed");

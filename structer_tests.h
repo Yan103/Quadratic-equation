@@ -16,6 +16,6 @@ struct tests {
 };
 
 /// Number of tests
-const int N_TESTS = 25;
+/// const int N_TESTS = 25;
 
 #endif //STRUCTER_TEST_H

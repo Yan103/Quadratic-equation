@@ -15,6 +15,7 @@ enum returnCodes {
     PROGRAMM_ERROR = -3,   //< Program execution error
     FILE_ERROR     = -4,   //< Error reading a text file
     NULL_          = -5,   //< Received NULL
+    MEMORY_ERROR   = -6,   //< 
 };
 
 #endif // RETURN_CODES_H

@@ -17,6 +17,6 @@
     Function reads the test data from file and checks the correctness of
     the equation solution function, result if output to the console
 */
-void tester_solver();
+int tester_solver(const char *tests_filename);
 
 #endif // TESTER_SOLVER_H

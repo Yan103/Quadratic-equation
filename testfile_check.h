@@ -17,6 +17,6 @@
     and compares them with the values returned by the program, returns the number of passed tests
     \param [in] test_ptr - pointer on structure
 */
-int testfile_check(tests *test_ptr);
+int testfile_check(tests *test_ptr, const int number_tests);
 
 #endif //TESTFILE_CHECK_H

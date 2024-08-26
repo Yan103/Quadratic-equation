@@ -3,11 +3,13 @@
 #include "my_assert.h"
 
 /// Start checking expected data with valid ones
-int testfile_check(tests *test_ptr) {
+int testfile_check(tests *test_ptr, const int number_tests) {
     ASSERT(test_ptr != nullptr, "Null pointer was passed");
 
+    /// size_t N_TESTS = sizeof(test_ptr) / sizeof(tests);
+
     int count = 0;
-    for (int test_index = 0; test_index < N_TESTS; test_index++)
+    for (int test_index = 0; test_index < number_tests; test_index++)
     {
         count += TestSystem(test_index + 1,
                             test_ptr[test_index].coeff_a,

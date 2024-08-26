@@ -25,12 +25,6 @@ $(OBJECTS): $(OBJ_DIR)/%.o : $(SRC_DIR)/%.cpp
 run: $(EXECUTABLE)
 	@ ./$(EXECUTABLE)
 
-clean_build:
-	@del $(BIN_DIR)
-
-clean_obj:
-	@del $(OBJ_DIR)
-
 clean:
 	@del $(BIN_DIR)
 	@del $(OBJ_DIR)

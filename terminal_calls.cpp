@@ -26,7 +26,7 @@ int start_programm(const int argc, char *argv[]) {
                 }
                 return SUCCESS;
             case 't':
-                tester_solver();
+                tester_solver("tests.txt");
                 return SUCCESS;
             case 'a':
                 next = input_equation(&quadratic_equation, atoi(optarg));

@@ -34,7 +34,7 @@ int input_equation(equation *equation_ptr, int attempts) {
 
    int input_count = 0;
    double coeff_a = 0, coeff_b = 0, coeff_c = 0;
-   char message[10] = {};
+   char message[100] = {};
 
    while (1) {
       if (attempts != 0) {
@@ -58,12 +58,13 @@ int input_equation(equation *equation_ptr, int attempts) {
             }
 
          for (int s = getchar(); s != '\n' && s != EOF; s = getchar()) {};
+
          printfRed("Incorrect input, enter numbers or 'quit' to exit!\n");
          }
       }
       if (attempts == input_count && attempts != 0) {
-            printf("Input attempts have ended...\n");
-            return USER_OUT;
+         printf("Input attempts have ended...\n");
+         return USER_OUT;
       }
    }
    ASSERT(isfinite(equation_ptr->coeff_a), "An indeterminate number (INF or NAN) was received");
@@ -91,10 +92,10 @@ int output_result(const equation *equation_ptr) {
          printf("The equation has no real roots\n");
          return SUCCESS;
       case ONE_ROOT:
-         printf("The equation has 1 root: %g\n", equation_ptr->x1);
+         printf("The equation has 1 root: %lg\n", equation_ptr->x1);
          return SUCCESS;
       case TWO_ROOTS:
-         printf("The equation has 2 root: %g and %g\n", equation_ptr->x1, equation_ptr->x2);
+         printf("The equation has 2 root: %lg and %lg\n", equation_ptr->x1, equation_ptr->x2);
          return SUCCESS;
       case INF_ROOTS:
          printf("The equation has an infinite number of solutions\n");

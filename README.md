@@ -10,7 +10,7 @@ The program requests 3 numbers - the coefficients of the equation and outputs th
 -a {number} limited input mode fоr {number} attempts
 ```
 
-## Installation and assembly
+## Installation and compilation
 To run the program on your computer, download the repository and run the Makefile
 1. Cloning a repository
 ```bash

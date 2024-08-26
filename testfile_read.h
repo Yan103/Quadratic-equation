@@ -16,6 +16,6 @@
     \param [in]  filename - name of file with tests
     \param [out] test_ptr - pointer on structure
 */
-int testfile_read(const char *filename, tests *test_ptr);
+int testfile_read(FILE *filename, tests *test_ptr);
 
 #endif // TESTFILE_READ_H

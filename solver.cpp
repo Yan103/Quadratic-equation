@@ -108,3 +108,4 @@ void solve_equation(equation *equation_ptr) {
         }
    }
 }
+

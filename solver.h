@@ -17,10 +17,4 @@
 */
 void solve_equation(equation *equation_ptr);
 
-/*!
-    Function compares the entered number with 0 (returns true if the number is zero, otherwise false)
-    \param [in] number - the number to be compared with 0
-*/
-bool IS_ZERO(double number);
-
 #endif // SOLVER_H

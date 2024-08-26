@@ -11,7 +11,7 @@ int testfile_check(tests *test_ptr, const int number_tests) {
     int count = 0;
     for (int test_index = 0; test_index < number_tests; test_index++)
     {
-        count += TestSystem(test_index + 1,
+        count += test_system(test_index + 1,
                             test_ptr[test_index].coeff_a,
                             test_ptr[test_index].coeff_b,
                             test_ptr[test_index].coeff_c,

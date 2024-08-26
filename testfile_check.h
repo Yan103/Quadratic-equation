@@ -9,7 +9,7 @@
 #include <stdio.h>
 
 #include "nRoots.h"
-#include "structer_tests.h"
+#include "struct_tests.h"
 #include "testsystem.h"
 
 /*!

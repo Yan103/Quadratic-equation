@@ -11,7 +11,7 @@ static const double EPS = 1e-8;
 static const int PLUG = -1;
 
 /// Compare number with 0
-bool IS_ZERO(double number) {
+static bool is_zero(double number) {
    return fabs(number) < EPS;
 }
 
@@ -55,7 +55,7 @@ static void solve_linear_equation(equation *equation_ptr) {
    ASSERT(equation_ptr->nRoots == UNKNOWN, "Internal function execution error");
 
    equation_ptr->nRoots = ONE_ROOT;
-   equation_ptr->x1 = (IS_ZERO(equation_ptr->coeff_c)) ? 0 : -equation_ptr->coeff_c / equation_ptr->coeff_b;
+   equation_ptr->x1 = (is_zero(equation_ptr->coeff_c)) ? 0 : -equation_ptr->coeff_c / equation_ptr->coeff_b;
    equation_ptr->x2 = PLUG;
 }
 
@@ -67,17 +67,18 @@ static void solve_quadratic_equation(equation *equation_ptr) {
    ASSERT(isfinite(equation_ptr->coeff_c), "An indeterminate number (INF or NAN) was received");
    ASSERT(equation_ptr->nRoots == UNKNOWN, "Internal function execution error");
 
-   if (!IS_ZERO(equation_ptr->D)) {
+   if (!is_zero(equation_ptr->D)) {
       equation_ptr->nRoots = TWO_ROOTS;
       const double sqrt_D = sqrt(equation_ptr->D);
       equation_ptr->x1 = (-equation_ptr->coeff_b - sqrt_D) / (2 * equation_ptr->coeff_a);
       equation_ptr->x2 = (-equation_ptr->coeff_b + sqrt_D) / (2 * equation_ptr->coeff_a);
+
       if (equation_ptr->x1 > equation_ptr->x2) {
          swap(&equation_ptr->x1, &equation_ptr->x2);
       }
    } else {
       equation_ptr->nRoots = ONE_ROOT;
-      equation_ptr->x1 = (IS_ZERO(equation_ptr->coeff_b)) ? 0 : -equation_ptr->coeff_b / (2 * equation_ptr->coeff_a);
+      equation_ptr->x1 = (is_zero(equation_ptr->coeff_b)) ? 0 : -equation_ptr->coeff_b / (2 * equation_ptr->coeff_a);
       equation_ptr->x2 = PLUG;
    }
 }
@@ -90,9 +91,9 @@ void solve_equation(equation *equation_ptr) {
    ASSERT(isfinite(equation_ptr->coeff_c), "An indeterminate number (INF or NAN) was received");
    ASSERT(equation_ptr->nRoots == UNKNOWN, "Internal function execution error");
 
-   if (IS_ZERO(equation_ptr->coeff_a)) {
-      if (IS_ZERO(equation_ptr->coeff_b)) {
-         if (IS_ZERO(equation_ptr->coeff_c)) {
+   if (is_zero(equation_ptr->coeff_a)) {
+      if (is_zero(equation_ptr->coeff_b)) {
+         if (is_zero(equation_ptr->coeff_c)) {
                has_inf_roots(equation_ptr);
             } else {
                doesnt_have_real_roots(equation_ptr);

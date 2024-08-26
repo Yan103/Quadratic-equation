@@ -18,6 +18,17 @@
 #include "struct_equation.h"
 #include "tester_solver.h"
 
+const char CAT[] = " /\\..../\\\n"
+                   "(.'*..*'.)     MEOW :3\n"
+                   " .==**==. \n"
+                   "(.\\.||./.)~~^^\n";
+
+const char HELP_TEXT[] = "-s starts the input coefficients mode for solving equation (enabled by default)\n"
+                       "-t {file name} starts the automatic testing mode (by reading data from a file)\n"
+                       "-a {number} limited input mode for {number} attempts\n"
+                       "-h calls the help commands\n"
+                       "if you do not specify parameters, then -s will be used by default\n";
+
 /*!
     Function that starts the program (if available, use command line arguments)
     \param [in] argc - argc argument

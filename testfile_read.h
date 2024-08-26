@@ -9,7 +9,7 @@
 #include <stdio.h>
 
 #include "nRoots.h"
-#include "structer_tests.h"
+#include "struct_tests.h"
 
 /*!
     Function reads data from a file intended for testing the program and writes it to an array of structures (test_ptr)

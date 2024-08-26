@@ -8,7 +8,7 @@
 
 #include <stdio.h>
 
-#include "structer_tests.h"
+#include "struct_tests.h"
 #include "testfile_check.h"
 #include "testfile_read.h"
 #include "testsystem.h"

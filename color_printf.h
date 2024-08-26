@@ -8,8 +8,6 @@
 
 #include <stdio.h>
 
-
-
 /// Prints the text in red
 #define printfRed(s, a...) printf("\033[1;31m" s "\033[1;0m", ## a)
 

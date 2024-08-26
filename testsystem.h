@@ -21,7 +21,7 @@
     \param [in]      exp_x1 - expected value x1
     \param [in]      exp_x2 - expected value x2
 */
-int TestSystem(int test_number, double coeff_a, double coeff_b, double coeff_c,
+int test_system(int test_number, double coeff_a, double coeff_b, double coeff_c,
                nRoots exp_nRoots, double exp_x1, double exp_x2);
 
 /*!
@@ -29,6 +29,6 @@ int TestSystem(int test_number, double coeff_a, double coeff_b, double coeff_c,
     \param [in] x - first number
     \param [in] y - second number
 */
-bool IS_EQUAL(double first, double second);
+bool is_equal(double first, double second);
 
 #endif // TESTSYSTEM_H

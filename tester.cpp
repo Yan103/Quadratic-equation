@@ -9,18 +9,18 @@
 /// static const char *TESTS_FILENAME = "tests.txt";
 
 /// Start tests
-int tester_solver(const char *tests_filename) { // todo filename as param
+int tester_solver(const char *tests_filename) {
 
-    FILE *testfile = fopen(tests_filename, "r");
+    FILE *test_file = fopen(tests_filename, "r");
 
-    if (!testfile) {
+    if (!test_file) {
         printfRed("Error occured while opening file\n");
 
-        return FILE_ERROR; // todo \n VEZDEEEEEEEEEE
+        return FILE_ERROR;
     }
 
-    int number_tests = 0; // todo no ptr
-    fscanf(testfile, "%d", &number_tests);
+    int number_tests = 0;
+    fscanf(test_file, "%d", &number_tests);
 
     tests *test_arr = (tests*) calloc(number_tests, sizeof(tests));
 
@@ -28,12 +28,12 @@ int tester_solver(const char *tests_filename) { // todo filename as param
 
     /// tests test_arr[N_TESTS] = {};
 
-    testfile_read(testfile, test_arr);
+    testfile_read(test_file, test_arr);
 
     int count = testfile_check(test_arr, number_tests);
 
     free(test_arr);
-    fclose(testfile);
+    fclose(test_file);
 
     if (count == number_tests) printfGreen("END OF TEST! Successfully %d/%d\n", count, number_tests);
     else printfRed("END OF TEST! Successfully %d/%d\n", count, number_tests);

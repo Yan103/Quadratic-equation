@@ -5,9 +5,9 @@
 #include "return_codes.h"
 
 /// Reading expected data from a file
-int testfile_read(FILE *filename, tests *test_ptr) {
+int testfile_read(FILE *file_name, tests *test_ptr) {
     ASSERT(test_ptr != nullptr, "Null pointer was passed");
-    ASSERT(filename != nullptr, "Null pointer was passed");
+    ASSERT(file_name != nullptr, "Null pointer was passed");
 
     double coeff_a = 0, coeff_b = 0, coeff_c = 0;
     double exp_x1 = 0, exp_x2 = 0;
@@ -21,8 +21,9 @@ int testfile_read(FILE *filename, tests *test_ptr) {
     } */
 
     int i = 0;
-    while((fscanf(filename, "%lf %lf %lf %d %lf %lf\n",
-           &coeff_a, &coeff_b, &coeff_c, &fn_roots, &exp_x1, &exp_x2)) != EOF)
+    while((fscanf(file_name, "%lf %lf %lf %d %lf %lf\n",
+                  &coeff_a, &coeff_b, &coeff_c,
+                  &fn_roots, &exp_x1, &exp_x2)) != EOF)
     {
         test_ptr[i] = {.coeff_a = coeff_a,
                        .coeff_b = coeff_b,

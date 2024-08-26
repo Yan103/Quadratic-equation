@@ -23,6 +23,7 @@ static int validStr_check(double *coeff_a, double *coeff_b, double *coeff_c) {
       return SUCCESS;
    } else {
       printfRed("Incorrect input, enter real numbers!\n");
+
       return INPUT_ERROR;
    }
 }
@@ -54,6 +55,7 @@ int input_equation(equation *equation_ptr, int attempts) {
          if (scanf("%s", message) == 1) {
             if (strcmp("quit", message) == 0) {
                printf("You wanted to leave :(\n");
+
                return USER_OUT;
             }
 
@@ -62,11 +64,14 @@ int input_equation(equation *equation_ptr, int attempts) {
          printfRed("Incorrect input, enter numbers or 'quit' to exit!\n");
          }
       }
+
       if (attempts == input_count && attempts != 0) {
          printf("Input attempts have ended...\n");
+
          return USER_OUT;
       }
    }
+
    ASSERT(isfinite(equation_ptr->coeff_a), "An indeterminate number (INF or NAN) was received");
    ASSERT(isfinite(equation_ptr->coeff_b), "An indeterminate number (INF or NAN) was received");
    ASSERT(isfinite(equation_ptr->coeff_c), "An indeterminate number (INF or NAN) was received");
@@ -76,6 +81,7 @@ int input_equation(equation *equation_ptr, int attempts) {
    equation_ptr->coeff_c = coeff_c;
    equation_ptr->D = coeff_b * coeff_b - 4 * coeff_a * coeff_c;
    equation_ptr->x1 = equation_ptr->x2 = equation_ptr->nRoots = UNKNOWN;
+
    return SUCCESS;
 }
 
@@ -90,21 +96,27 @@ int output_result(const equation *equation_ptr) {
    switch (equation_ptr->nRoots) {
       case NO_ROOTS:
          printf("The equation has no real roots\n");
+
          return SUCCESS;
       case ONE_ROOT:
          printf("The equation has 1 root: %lg\n", equation_ptr->x1);
+
          return SUCCESS;
       case TWO_ROOTS:
          printf("The equation has 2 root: %lg and %lg\n", equation_ptr->x1, equation_ptr->x2);
+
          return SUCCESS;
       case INF_ROOTS:
          printf("The equation has an infinite number of solutions\n");
+
          return SUCCESS;
       case UNKNOWN:
          printf("Something went wrong...\n");
+
          return SUCCESS;
       default:
          printfRed("Something went wrong...\n");
+         
          return PROGRAMM_ERROR;
    }
 }

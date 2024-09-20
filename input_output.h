@@ -1,28 +1,26 @@
+/*!
+    \file
+    A file describing the input and output functions
+*/
+
 #ifndef INPUT_OUTPUT_H
 #define INPUT_OUTPUT_H
 
 #include "struct_equation.h"
 
-//-----------------------------------------------------
-//! @param [in] argc - argc (from console)
-//! @param [in] argv - argv (from console)
-//! @param [out] e_ptr - equation pointer
-//!
-//! @note The function starts the process of entering the coefficients of the equation, if additional parameters
-//!       are specified in the console at startup, it processes them;
-//!       --ENDLESS -> infinite number of input attempts (enter "quit" to end the program)
-//!       --ATTEMPTS {int number (obligatory parametr)} ->  limited number of attempts, if they are all over - the end of the program (if 0 is passed, the program will not start)
-//!       if you do not specify parameters, then --ENDLESS will be used by default
-void input_equation(int argc, char *argv[], equation *e_ptr);
+/*!
+    Function that, in case of an error, prints where it occurred and terminates the program
+    \param [out] equation_ptr - equation pointer
+    \param [in]      attempts - Number of input attempts
+    \return Returns the status of the completed coefficient entry
+*/
+int input_equation(equation *equation_ptr, const int attempts);
 
-
-//-----------------------------------------------------
-//! @param [in] e_ptr - equation pointer
-//!
-//! @note Outputs information about the roots of the equation or their absence
-void output_result(const equation *q_equation);
-
-//
-
+/*!
+   Function that outputs information about the roots of the equation or their absence
+   \param [in] equation_ptr - equation pointer
+   \return Returns the status of the completed coefficient output
+*/
+int output_result(const equation *equation_ptr);
 
 #endif //INPUT_OUTPUT_H

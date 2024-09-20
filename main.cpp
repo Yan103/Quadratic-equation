@@ -1,16 +1,17 @@
-#include <stdio.h>
+/*!
+    \file
+    The file with the description of the main function
+*/
 
-#include "input_output.h"
-#include "solver.h"
-#include "struct_equation.h"
+#include "terminal_calls.h"
 
+/*!
+    The main function
+    \param [in] argc - number of command line arguments
+    \param [in] argv - command line arguments
+    \return Returns the status of the main program execution
+*/
+int main(const int argc, char *argv[]) {
 
-int main(int argc, char *argv[]) {
-    struct equation quadratic_equation = {};
-
-    input_equation(argc, argv, &quadratic_equation);
-    solve_equation(&quadratic_equation);
-    output_result(&quadratic_equation);
-
-    return 0;
+    return start_solve_programm(argc, argv);
 }

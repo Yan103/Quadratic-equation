@@ -1,130 +1,143 @@
-#include <assert.h>
+/*!
+    \file
+    A file describing the input and output functions
+*/
+
+#include "input_output.h"
+
 #include <ctype.h>
 #include <math.h>
 #include <stdio.h>
 #include <string.h>
-#include <ctype.h>
 
-#include "roots_status.h"
-#include "struct_equation.h"
+#include "color_printf.h"
+#include "my_assert.h"
+#include "number_roots.h"
+#include "return_codes.h"
 
-static void input_coefficients(equation *e_ptr, int attempts);
-void output_result(const equation *q_equation);
-void input_equation(int argc, char *argv[], equation *e_ptr);
+/*!
+   Checking the string for correct input
+   \param [in] coeff_a - Coefficient A
+   \param [in] coeff_b - Coefficient B
+   \param [in] coeff_c - Coefficient C
+   \return If the string is valid, it returns 1, otherwise 0
+*/
+static int validStr_check(double *coeff_a, double *coeff_b, double *coeff_c) {
+   bool valid_str = true;
 
-// Input coefficients
-static void input_coefficients(equation *e_ptr, int attempts) {
-   assert(e_ptr);
-   assert(attempts >= 0);
-
-   double a = 0, b = 0, c = 0;
-   int i = 0;
-
-   while (1) {
-      if (attempts != 0) {
-         if (attempts != i) {
-            printf("Enter coeficents a, b and c (%d attempts remain, enter quit to exit): ", attempts - i++);
-         } else {
-            printf("The attemps are over, bye!\n");
-            exit(0);
-         }
-      } else {
-         printf("Enter coeficents a, b and c (enter quit to exit): ");
-      }
-      if (scanf("%lf %lf %lf", &a, &b, &c) == 3) {
-         bool flag = true;
-         for (int s = getchar(); s != '\n' && s != EOF; s = getchar()) {
-            if (!isspace(s)) {
-               flag = false;
-            }
-         }
-         if (flag) {
-            break;
-         } else {
-            printf("Incorrect input, enter numbers!\n");
-         }
-      } else {
-         
-         for (int s = getchar(); s != '\n' && s != EOF; s = getchar());
-         printf("Incorrect input, enter numbers!\n");
+   for (int s = getchar(); s != '\n' && s != EOF; s = getchar()) {
+      if (!isspace(s)) {
+         valid_str = false;
       }
    }
 
-   assert(isfinite(a));
-   assert(isfinite(b));
-   assert(isfinite(c));
+   if (valid_str && isfinite(*coeff_a) && isfinite(*coeff_b) && isfinite(*coeff_c)) {
+      return SUCCESS;
+   } else {
+      printf(RED("Incorrect input, enter real numbers!\n"));
 
-   e_ptr->a = a;
-   e_ptr->b = b;
-   e_ptr->c = c;
-   e_ptr->D = b * b - 4 * a * c;
-   e_ptr->x1 = e_ptr->x2 = e_ptr->nRoots = UNKNOWN;
+      return INPUT_ERROR;
+   }
 }
 
-// Input equation
-void input_equation(int argc, char *argv[], equation *e_ptr) {
-   assert(e_ptr);
-   assert(argc);
-   assert(argv);
+/*!
+   Function that, in case of an error, prints where it occurred and terminates the program
+   \param [out] equation_ptr - equation pointer
+   \param [in]      attempts - Number of input attempts
+   \return Returns the status of the completed coefficient entry
+*/
+int input_equation(equation *equation_ptr, const int attempts) {
+   ASSERT(equation_ptr != nullptr, "Null pointer was passed");
+   ASSERT(isfinite(attempts), "An indeterminate number (INF or NAN) was received");
 
-   if (argc == 1) {
-        input_coefficients(e_ptr, 0);
-    } else {
-        if (strcmp(argv[1], "--ATTEMPTS") == 0) {
-            if (argc == 3) {
-               for (int i = 0; i < strlen(argv[2]); i++) {
-                  if (!isdigit(argv[2][i])) {
-                     printf("Error, if you use --ATTEMPTS, then specify an integer separated by a space!\n");
-                     exit(1);
-                  }
-               }
-               if (atoi(argv[2]) != 0) {
-               input_coefficients(e_ptr, atoi(argv[2]));
-               } else {
-                  printf("You entered 0, your attempts are over)\n");
-                  exit(1);
-               }
-            } else {
-                printf("Error, if you use --ATTEMPTS, then specify an integer separated by a space!\n");
-                exit(1);
+   int input_count = 0;
+   double coeff_a = 0, coeff_b = 0, coeff_c = 0;
+   char message[100] = {};
+
+   while (1) {
+      if (attempts != 0) {
+         printf("Enter coefficents a, b and c (%d attempts remained, enter quit to exit): ", attempts - input_count++);
+      } else {
+         printf("Enter coefficents a, b and c (enter quit to exit): ");
+      }
+
+      if (scanf("%lf %lf %lf", &coeff_a, &coeff_b, &coeff_c) == 3) {
+
+         int next = validStr_check(&coeff_a, &coeff_b, &coeff_c);
+
+         if (next == SUCCESS) break;
+
+
+      } else {
+         if (scanf("%100s", message) == 1) {
+            if (strcmp("quit", message) == 0) {
+               printf("You wanted to leave :(\n");
+
+               return USER_OUT;
             }
-        } else if (strcmp(argv[1], "--ENDLESS") == 0) {
-            input_coefficients(e_ptr, 0);
-        } else {
-            printf("Error, Please use only the options --ATTEMPTS {int number} or --ENDLESS!\n");
-            exit(1);
-        }
-    }
+
+         for (int s = getchar(); s != '\n' && s != EOF; s = getchar()) {};
+
+         printf(RED("Incorrect input, enter numbers or 'quit' to exit!\n"));
+         }
+      }
+
+      if (attempts == input_count && attempts != 0) {
+         printf("Input attempts have ended...\n");
+
+         return USER_OUT;
+      }
+   }
+
+   ASSERT(isfinite(equation_ptr->coeff_a), "An indeterminate number (INF or NAN) was received");
+   ASSERT(isfinite(equation_ptr->coeff_b), "An indeterminate number (INF or NAN) was received");
+   ASSERT(isfinite(equation_ptr->coeff_c), "An indeterminate number (INF or NAN) was received");
+
+   equation_ptr->coeff_a = coeff_a;
+   equation_ptr->coeff_b = coeff_b;
+   equation_ptr->coeff_c = coeff_c;
+   equation_ptr->D = coeff_b * coeff_b - 4 * coeff_a * coeff_c;
+   equation_ptr->x1 = equation_ptr->x2 = equation_ptr->number_roots = UNKNOWN;
+
+   return SUCCESS;
 }
 
-// Result output
-void output_result(const equation *q_equation) {
-   assert(q_equation);
-   assert(isfinite(q_equation->a));
-   assert(isfinite(q_equation->b));
-   assert(isfinite(q_equation->c));
-   assert(q_equation->nRoots != UNKNOWN);
+/*!
+   Function that outputs information about the roots of the equation or their absence
+   \param [in] equation_ptr - equation pointer
+   \return Returns the status of the completed coefficient output
+*/
+int output_result(const equation *equation_ptr) {
+   ASSERT(equation_ptr != nullptr, "Null pointer was passed");
+   ASSERT(isfinite(equation_ptr->coeff_a), "An indeterminate number (INF or NAN) was received");
+   ASSERT(isfinite(equation_ptr->coeff_b), "An indeterminate number (INF or NAN) was received");
+   ASSERT(isfinite(equation_ptr->coeff_c), "An indeterminate number (INF or NAN) was received");
+   ASSERT(equation_ptr->number_roots != UNKNOWN, "Internal function execution error");
 
-   switch (q_equation->nRoots) {
+   switch (equation_ptr->number_roots) {
       case NO_ROOTS:
          printf("The equation has no real roots\n");
-         break;
+
+         return SUCCESS;
       case ONE_ROOT:
-         printf("The equation has 1 root: %g\n", q_equation->x1);
-         break;
+         printf("The equation has 1 root: %lg\n", equation_ptr->x1);
+
+         return SUCCESS;
       case TWO_ROOTS:
-         printf("The equation has 2 root: %g and %g\n", q_equation->x1, q_equation->x2);
-         break;
+         printf("The equation has 2 root: %lg and %lg\n", equation_ptr->x1, equation_ptr->x2);
+
+         return SUCCESS;
       case INF_ROOTS:
          printf("The equation has an infinite number of solutions\n");
-         break;
+
+         return SUCCESS;
       case UNKNOWN:
          printf("Something went wrong...\n");
-         break;
+
+         return SUCCESS;
       default:
-         printf("Something went wrong...\n");
-         break;
-    }
+         printf(RED("Something went wrong...\n"));
+
+         return PROGRAMM_ERROR;
+   }
 }
-
-
